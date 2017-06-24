@@ -24,24 +24,12 @@
 #define UDP_PORT 1234
 #define SERVICE_ID 190
 
-#define SEND_INTERVAL   (300 * CLOCK_SECOND)
+#define SEND_INTERVAL   (60 * CLOCK_SECOND)
 #define SEND_TIME   (random_rand() % (SEND_INTERVAL))
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
 static struct simple_udp_connection connection;
-
-struct msgStruct {
-  uint16_t light1;
-  uint16_t light2;
-  uint16_t temperature;
-  uint16_t humidity;
-  uint32_t energy_lpm;
-  uint32_t energy_cpu;
-  uint32_t energy_rx;
-  uint32_t energy_tx;
-  uint32_t energy_rled;
-};
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
@@ -100,15 +88,13 @@ PROCESS_THREAD(sender_process, ev, data)
   leds_on(LEDS_BLUE);
 
   servreg_hack_init();
-
   set_global_address();
-
   simple_udp_register(&connection, UDP_PORT,
                       NULL, UDP_PORT, receiver);
 
   etimer_set(&periodic_timer, SEND_INTERVAL);
-  while(1) {
 
+  while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
     etimer_reset(&periodic_timer);
     etimer_set(&send_timer, SEND_TIME);
@@ -116,51 +102,38 @@ PROCESS_THREAD(sender_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&send_timer));
     addr = servreg_hack_lookup(SERVICE_ID);
     if(addr != NULL) {
-      struct msgStruct *msg;
-
       leds_on(LEDS_GREEN);
       leds_off(LEDS_RED);
 
       SENSORS_ACTIVATE(light_sensor);
       SENSORS_ACTIVATE(sht11_sensor);
 
-      msg->light1 = light_sensor.value(LIGHT_SENSOR_PHOTOSYNTHETIC);
-      msg->light2 = light_sensor.value(LIGHT_SENSOR_TOTAL_SOLAR);
-      msg->temperature = sht11_sensor.value(SHT11_SENSOR_TEMP);
-      msg->humidity = sht11_sensor.value(SHT11_SENSOR_HUMIDITY);
-      msg->energy_lpm = energest_type_time(ENERGEST_TYPE_LPM);
-      msg->energy_cpu = energest_type_time(ENERGEST_TYPE_CPU);
-      msg->energy_rx = energest_type_time(ENERGEST_TYPE_LISTEN);
-      msg->energy_tx = energest_type_time(ENERGEST_TYPE_TRANSMIT);
-      msg->energy_rled = energest_type_time(ENERGEST_TYPE_LED_RED);
+      uint32_t data[] = {
+        light_sensor.value(LIGHT_SENSOR_PHOTOSYNTHETIC),
+        light_sensor.value(LIGHT_SENSOR_TOTAL_SOLAR),
+        sht11_sensor.value(SHT11_SENSOR_TEMP),
+        sht11_sensor.value(SHT11_SENSOR_HUMIDITY),
+        energest_type_time(ENERGEST_TYPE_LPM),
+        energest_type_time(ENERGEST_TYPE_CPU),
+        energest_type_time(ENERGEST_TYPE_LISTEN),
+        energest_type_time(ENERGEST_TYPE_TRANSMIT),
+        energest_type_time(ENERGEST_TYPE_LED_RED)
+      };
 
       printf("Sending message to ");
       uip_debug_ipaddr_print(addr);
       printf("\n");
 
-      printf("Data: %u, %u, %u, %u, %lu, %lu, %lu, %lu, %lu\n",
-   msg->light1, msg->light2, msg->temperature, msg->humidity,
-   msg->energy_lpm, msg->energy_cpu, msg->energy_rx, msg->energy_tx, msg->energy_rled
-   );
-
-   uint32_t data[] = {
-      msg->light1,
-      msg->light2,
-      msg->temperature,
-      msg->humidity,
-      msg->energy_lpm,
-      msg->energy_cpu,
-      msg->energy_rx,
-      msg->energy_tx,
-      msg->energy_rled
-    };
+      printf("Data: [%u, %u, %u, %u, %lu, %lu, %lu, %lu, %lu]\n",
+        data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+      );
 
       simple_udp_sendto(&connection, data, sizeof(data), addr);
 
       leds_off(LEDS_GREEN);
     } else {
       leds_on(LEDS_RED);
-      printf("Service %d not found\n", SERVICE_ID);
+      printf("Error Sending Data");
     }
   }
 
