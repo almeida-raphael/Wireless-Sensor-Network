@@ -44,24 +44,24 @@ int lengthSenderMapping = 0;
 
 dataTypes data[4];
 
-dataTypes tSum
-dataTypes dSum
-dataTypes tdComSum
-dataTypes tVarSum
+dataTypes tSum;
+dataTypes dSum;
+dataTypes tdComSum;
+dataTypes tVarSum;
 
-dataTypes dSumKG
-dataTypes tdCovSumKG
-dataTypes tVarSumKG
+dataTypes dSumKG;
+dataTypes tdCovSumKG;
+dataTypes tVarSumKG;
 
-dataTypes a
-dataTypes b
-dataTypes aKG
-dataTypes bKG
+dataTypes a;
+dataTypes b;
+dataTypes aKG;
+dataTypes bKG;
 
-dataTypes dataSize
+dataTypes dataSize;
 
-float decay = 0.5
-float decayCorrected = 0.4 
+float decay = 0.5;
+float decayCorrected = 0.4;
 
 /*---------------------------------------------------------------------------*/
 static uip_ipaddr_t *
