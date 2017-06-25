@@ -42,7 +42,8 @@ typedef struct {
 uip_ipaddr_t *senderMapping[4];
 int lengthSenderMapping = 0;
 
-dataTypes data[4];
+dataTypes avalibleData[4];
+short dataUsed[4] = {1,1,1,1}
 
 dataTypes tSum;
 dataTypes dSum;
@@ -62,6 +63,8 @@ dataTypes dataSize;
 
 float decay = 0.5;
 float decayCorrected = 0.4;
+
+uint32_t lastDataAvaliableTime = 0;
 
 /*---------------------------------------------------------------------------*/
 static uip_ipaddr_t *
@@ -211,14 +214,70 @@ dataTypes predict(dataTypes x, dataTypes a, dataTypes b){
   return sum(productDouble(a, x), b);
 }
 
-void update(){
-
+void update(dataTypes processedData){
+  dataSize++;
+  //TODO: Continuar daqui
 }
 
+void insertDataIntoDataSlot(int index, uint32_t *data){
+  avalibleData[index].light1 = data[0];
+  avalibleData[index].light2 = data[1];
+  avalibleData[index].temperature = data[2];
+  avalibleData[index].humidity = data[3];
+  avalibleData[index].energy_lpm = data[4];
+  avalibleData[index].energy_cpu = data[5];
+  avalibleData[index].energy_rx = data[6];
+  avalibleData[index].energy_tx = data[7];
+  avalibleData[index].energy_rled = data[8];
+  dataUsed[index] = 0;
+}
+
+int isDataReady(){
+  int flag = 0
+  int i;
+  for(i = 0; i < 4; i++){
+    if(dataUsed[i] == 1){
+      return 0;
+    }
+  }
+  return 1;
+}
+
+dataTypes combineData(){
+  int i;
+  dataTypes returnData;
+  for(i = 0; i < 4; i++){
+    returnData.light1 += avalibleData[i].light1;
+    returnData.light2 += avalibleData[i].light2;
+    returnData.temperature += avalibleData[i].temperature;
+    returnData.humidity += avalibleData[i].humidity;
+    returnData.energy_lpm += avalibleData[i].energy_lpm;
+    returnData.energy_cpu += avalibleData[i].energy_cpu;
+    returnData.energy_rx += avalibleData[i].energy_rx;
+    returnData.energy_tx += avalibleData[i].energy_tx;
+    returnData.energy_rled += avalibleData[i].energy_rled;
+  }
+  returnData.light1 /= double(4);
+  returnData.light2 /= double(4);
+  returnData.temperature /= double(4);
+  returnData.humidity /= double(4);
+  returnData.energy_lpm /= double(4);
+  returnData.energy_cpu /= double(4);
+  returnData.energy_rx /= double(4);
+  returnData.energy_tx /= double(4);
+  returnData.energy_rled /= double(4); 
+  return returnData;
+}
+
+void processIncomingData(uip_ipaddr_t *sender_addr, uint32_t *data){
+  int index = getSenderIndex(sender_addr);
+  insertDataIntoDataSlot(index, data);
+  if(isDataReady() == 1){
+    dataTypes processedData = combineData();
+    update(processedData);
+  }
+}
 /*---------------------------------------------------------------------------*/
-
-
-//O TV t com um lag absurdo, haha impossivel de programar
 
 
 /*---------------------------------------------------------------------------*/
@@ -240,7 +299,7 @@ receiver(struct simple_udp_connection *c,
   printf(" on port %d from port %d with length %d\n",
          receiver_port, sender_port, datalen);
 
-  
+  processIncomingData(sender_addr, data)
   
   leds_off(LEDS_GREEN);   
 }
