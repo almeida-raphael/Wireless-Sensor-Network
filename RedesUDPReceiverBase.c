@@ -28,18 +28,18 @@
 static struct simple_udp_connection connection;
 
 typedef struct {
-  double light1;
-  double light2;
-  double temperature;
-  double humidity;
-  double energy_lpm;
-  double energy_cpu;
-  double energy_rx;
-  double energy_tx;
-  double energy_rled;
+  double light1,
+  double light2,
+  double temperature,
+  double humidity,
+  double energy_lpm,
+  double energy_cpu,
+  double energy_rx,
+  double energy_tx,
+  double energy_rled
 } dataTypes;
 
-uip_ipaddr_t *senderMapping[4];
+uip_ipaddr_t senderMapping[4];
 int lengthSenderMapping = 0;
 
 dataTypes avalibleData[4];
@@ -134,26 +134,29 @@ int getSenderIndex(uip_ipaddr_t *sender_addr){
   return sender_addr-1;
 }
 
-double calcCov(double x, double y, double xAvg, double yAvg, covSum, int dataSize){
-  return (covSum + (x - xAvg)(y - yAvg)) / (dataSize - 1 + 1e-10);
+/*---------------------------------------------------------------------------*/
+dataTypes calcCov(dataTypes x, dataTypes y, dataTypes xAvg, dataTypes yAvg, dataTypes covSum, int dataSize){
+  return quoucient(sum((covSum, product(subtract(x, xAvg), subtract(y, yAvg)))), sumConstant(subtract((dataSize, 1), 1e-10)));
 }
 
-double angularCoef(double x, double y, double xAvg, double yAvg, double xyCovSum, double xxCovSum, int dataSize){
-  return calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize) / (calcCov(x, x, xAvg, xAvg, xxCovSum, dataSize) + 1e-10);
+dataTypes angularCoef(dataTypes x, dataTypes y, dataTypes xAvg, dataTypes yAvg, dataTypes xyCovSum, dataTypes xxCovSum, int dataSize){
+  return quocient(calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize), sumConstant(calcCov(x, x, xAvg, xAvg, xxCovSum, dataSize), 1e-10));
 }
 
-double linearCoef(double ang, double xAvg, double yAvg, int dataSize){
-  return yAvg - ang*xAvg;
+dataTypes linearCoef(dataTypes ang, dataTypes xAvg, dataTypes yAvg){
+  return subtract(yAvg, product(xAvg, ang));
 }
 
-double kalmanCoef(double estimate, double measurement){
-  return estimate / (estimate + measurement);
+dataTypes kalmanCoef(dataTypes estimate, dataTypes measurement){
+  return quocient(estimate, sum(estimate, measurement));
 }
 
-double kalmanFilter(double estimate, double measurement){
-  return estimate + kalmanCoef(estimate, measurement) * (measurement - estimate);
+dataTypes kalmanFilter(dataTypes estimate, dataTypes measurement){
+  return sum(estimate, product(kalmanCoef(estimate, measurement), (subtract(measurement, estimate))));
 }
+/*---------------------------------------------------------------------------*/
 
+/*---------------------------------------------------------------------------*/
 dataTypes product(dataTypes a, dataTypes b){
   dataTypes temp;
   temp.light1 = a.light1 * b.light1;
@@ -168,7 +171,21 @@ dataTypes product(dataTypes a, dataTypes b){
   return temp
 }
 
-dataTypes productDouble(dataTypes a, double b){
+dataTypes quocient(dataTypes a, dataTypes b){
+  dataTypes temp;
+  temp.light1 = a.light1 / b.light1;
+  temp.light2 = a.light2 / b.light2;
+  temp.temperature = a.temperature / b.temperature;
+  temp.humidity = a.humidity / b.humidity;
+  temp.energy_lpm = a.energy_lpm / b.energy_lpm;
+  temp.energy_cpu = a.energy_cpu / b.energy_cpu;
+  temp.energy_rx = a.energy_rx / b.energy_rx;
+  temp.energy_tx = a.energy_tx / b.energy_tx;
+  temp.energy_rled = a.energy_rled / b.energy_rled;
+  return temp
+}
+
+dataTypes productConstant(dataTypes a, double b){
   dataTypes temp;
   temp.light1 = a.light1 * b;
   temp.light2 = a.light2 * b;
@@ -196,7 +213,21 @@ dataTypes sum(dataTypes a, dataTypes b){
   return temp
 }
 
-dataTypes sumDouble(dataTypes a, double b){
+dataTypes subtract(dataTypes a, dataTypes b){
+  dataTypes temp;
+  temp.light1 = a.light1 - b.light1;
+  temp.light2 = a.light2 - b.light2;
+  temp.temperature = a.temperature - b.temperature;
+  temp.humidity = a.humidity - b.humidity;
+  temp.energy_lpm = a.energy_lpm - b.energy_lpm;
+  temp.energy_cpu = a.energy_cpu - b.energy_cpu;
+  temp.energy_rx = a.energy_rx - b.energy_rx;
+  temp.energy_tx = a.energy_tx - b.energy_tx;
+  temp.energy_rled = a.energy_rled - b.energy_rled;
+  return temp
+}
+
+dataTypes sumConstant(dataTypes a, double b){
   dataTypes temp;
   temp.light1 = a.light1 + b;
   temp.light2 = a.light2 + b;
