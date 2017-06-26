@@ -38,27 +38,27 @@ typedef struct {
   uint32_t energy_rled;
 } dataTypes;
 
-uip_ipaddr_t *senderMapping[4];
+uip_ipaddr_t senderMapping[4];
 int lengthSenderMapping = 0;  
 
 dataTypes avalibleData[4];
 short dataUsed[4] = {1,1,1,1};
 
-dataTypes tSum;
+double tSum = 0;
 dataTypes dSum;
-dataTypes tdComSum;
-dataTypes tVarSum;
+dataTypes tdCovSum;
+double tVarSum = 0;
 
 dataTypes dSumKG;
 dataTypes tdCovSumKG;
-dataTypes tVarSumKG;
+double tVarSumKG = 0;
 
 dataTypes a;
 dataTypes b;
 dataTypes aKG;
 dataTypes bKG;
 
-dataTypes dataSize;
+uint32_t dataSize = 0;
 
 float decay = 0.5;
 float decayCorrected = 0.4;
@@ -195,10 +195,10 @@ dataTypes sumConstant(dataTypes a, double b){
 }
 /*---------------------------------------------------------------------------*/
 
-int compareIPV6(uip_ipaddr_t *ip1, uip_ipaddr_t *ip2){
+int compareIPV6(uip_ipaddr_t ip1, uip_ipaddr_t ip2){
   int i;
   for(i = 0; i < 16; i++){
-    if(ip1->u8[i] != ip2->u8[i]){
+    if(ip1.u8[i] != ip2.u8[i]){
       return 0;
     }
   }
@@ -258,47 +258,48 @@ AUTOSTART_PROCESSES(&receiver_process);
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
-dataTypes calcCov(dataTypes x, dataTypes y, dataTypes xAvg, dataTypes yAvg, dataTypes covSum, int dataSize){
-  dataTypes sub1 = 
-    subtract(
-      x, 
-      xAvg
+dataTypes calcCov(uint32_t x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes covSum, int dataSize){
+  return 
+    quocientConstant(
+      sum(
+        productConstant(
+          subtract(
+            y,
+            yAvg 
+          ),
+          (x - xAvg)
+        ),
+        covSum
+      ),
+      dataSize - 1 + 1e-10
+    )
+  ;
+}
+
+dataTypes updateCovSum(uint32_t x, double xAvg, dataTypes y, dataTypes yAvg, dataTypes xyCovSum, double decay){
+  return
+    sum(
+      productConstant(
+        subtract(
+          y,
+          yAvg
+        ),
+        (x - xAvg)
+      ),
+      productConstant(
+        xyCovSum,
+        decay
+      )
     )
   ; 
-  dataTypes sub2 = 
-    subtract(
-      y,
-      yAvg 
-    )
-  ;
-  dataTypes prod =
-    product(
-      sub1,
-      sub2          
-    )
-  ;
-
-  dataTypes sum1 =
-    sum(
-      prod,
-      covSum
-    )
-  ;
-
-  dataTypes result = quocientConstant(
-    sum1,
-    dataSize - 1 + 1e-10
-  );
-
-  return result;
 }
 
-dataTypes angularCoef(dataTypes x, dataTypes y, dataTypes xAvg, dataTypes yAvg, dataTypes xyCovSum, dataTypes xxCovSum, int dataSize){
-  return quocient(calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize), sumConstant(calcCov(x, x, xAvg, xAvg, xxCovSum, dataSize), 1e-10));
+dataTypes angularCoef(uint32_t x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes xyCovSum, double xxCovSum, uint32_t dataSize){
+  return quocientConstant(calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize), ((xxCovSum + ((x-xAvg)*(x-xAvg))) / (dataSize - 1 + 1e-10)));
 }
 
-dataTypes linearCoef(dataTypes ang, dataTypes xAvg, dataTypes yAvg){
-  return subtract(yAvg, product(xAvg, ang));
+dataTypes linearCoef(dataTypes ang, double xAvg, dataTypes yAvg){
+  return subtract(yAvg, productConstant(ang, xAvg));
 }
 
 dataTypes kalmanCoef(dataTypes estimate, dataTypes measurement){
@@ -311,14 +312,40 @@ dataTypes kalmanFilter(dataTypes estimate, dataTypes measurement){
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
-dataTypes predict(dataTypes x, dataTypes a, dataTypes b){
-  return sum(product(a, x), b);
+dataTypes predict(uint32_t x, dataTypes a, dataTypes b){
+  return sum(productConstant(a, x), b);
 }
 
-void update(dataTypes processedData){
-  printf("UPDATE1");
-  printDataType(processedData);
-  printf("UPDATE2");
+void update(dataTypes d){
+  printDataType(d);
+
+  dataSize++;
+  uint32_t t = clock_seconds();
+
+  tSum += t;
+  dSum = sum(dSum, d);
+
+  double tAvg = tSum / dataSize;
+  dataTypes dAvg = quocientConstant(dSum, dataSize);
+
+  a = angularCoef(t, d, tAvg, dAvg, tdCovSum, tVarSum, dataSize);
+  b = linearCoef(a, tAvg, dAvg);
+
+  dataTypes predict = sum(productConstant(a, t), b);
+  dataTypes corrected = kalmanFilter(predict, d);
+
+  dSumKG = sum(dSumKG, corrected);
+
+  dataTypes dAvgKG = quocientConstant(dSumKG, dataSize);
+
+  aKG = angularCoef(t, corrected, tAvg, dAvgKG, tdCovSumKG, tVarSum, dataSize);
+  bKG = linearCoef(aKG, tAvg, dAvgKG);
+
+  tdCovSum = updateCovSum(t, tAvg, d, dAvg, tdCovSum, decay);
+  tdCovSumKG = updateCovSum(t, tAvg, corrected, dAvgKG, tdCovSumKG, decayCorrected);
+  tVarSum =  (decay * tVarSum) + ((t - tAvg)*(t - tAvg));
+
+  printf("Model Updated :)\n");
 }
 
 void insertDataIntoDataSlot(int index, uint32_t *data){
@@ -344,6 +371,13 @@ int isDataReady(){
   return 1;
 }
 
+void resetDataReady(){
+  int i;
+  for(i = 0; i < 4; i++){
+    dataUsed[i] = 1;
+  }
+}
+
 dataTypes initDataType(){
   dataTypes temp;
   temp = productConstant(temp, 0);
@@ -360,11 +394,12 @@ dataTypes combineData(){
   return returnData;
 }
 
-int getSenderIndex(uip_ipaddr_t *sender_addr){
+int getSenderIndex(uip_ipaddr_t sender_addr){
   int i;
-  for(i = 0; i < 4; ++i){
-    if(compareIPV6(sender_addr, senderMapping[i]) == 1)
+  for(i = 0; i < 4; i++){
+    if(compareIPV6(sender_addr, senderMapping[i]) == 1){
       return i;
+    }
   }
   if(lengthSenderMapping >= 4){
     return -1;
@@ -375,20 +410,17 @@ int getSenderIndex(uip_ipaddr_t *sender_addr){
 }
 
 void processIncomingData(uip_ipaddr_t *sender_addr, uint32_t *data){
-  int index = getSenderIndex(sender_addr);
-  printf("PROCESSDATA1");
+  int index = getSenderIndex(*sender_addr);
   if(index != -1){
-    printf("PROCESSDATA2");
     insertDataIntoDataSlot(index, data);
     if(isDataReady() == 1){
-      printf("PROCESSDATA3");
+      resetDataReady();
       dataTypes combinedData = combineData();
       update(combinedData);
-      printf("PROCESSDATA4");
     }
   }
 }
-/*--------------------------senderMapping-------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 
 /*---------------------------------------------------------------------------*/
@@ -421,14 +453,19 @@ receiver(struct simple_udp_connection *c,
 PROCESS_THREAD(receiver_process, ev, data)
 {
   uip_ipaddr_t *ipaddr;
+  
+  dataTypes dSum = initDataType();
+  dataTypes tdCovSum = initDataType();
+  dataTypes dSumKG = initDataType();
+  dataTypes tdCovSumKG = initDataType();
+  dataTypes a = initDataType();
+  dataTypes b = initDataType();
+  dataTypes aKG = initDataType();
+  dataTypes bKG = initDataType();
 
   PROCESS_BEGIN();
 
   leds_on(BLUE);
-
-  printf("BLUE%d\n", LEDS_BLUE);
-  printf("RED%d\n", LEDS_RED);
-  printf("GREEN%d\n", LEDS_GREEN);
 
   servreg_hack_init();
   ipaddr = set_global_address();
@@ -445,7 +482,8 @@ PROCESS_THREAD(receiver_process, ev, data)
 
     leds_on(GREEN);  
     leds_off(RED);   
-
+    printf("Prediction: \n");
+    printDataType(predict(clock_seconds(), aKG, bKG));
     leds_off(GREEN);
   }
 
