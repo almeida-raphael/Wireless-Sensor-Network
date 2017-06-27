@@ -26,16 +26,22 @@
 
 static struct simple_udp_connection connection;
 
+#define DEC1 10
+#define DEC2 100
+#define DEC3 1000
+#define DEC4 10000
+#define DEC5 100000
+#define DEC6 1000000
+
 typedef struct {
-  uint16_t light1;
-  uint16_t light2;
-  uint16_t temperature;
-  uint16_t humidity;
+  int light1;
+  int light2;
+  int16_t temperature;
+  int16_t humidity;
   uint32_t energy_lpm;
   uint32_t energy_cpu;
   uint32_t energy_rx;
   uint32_t energy_tx;
-  uint32_t energy_rled;
 } dataTypes;
 
 uip_ipaddr_t senderMapping[4];
@@ -63,11 +69,15 @@ uint32_t dataSize = 0;
 float decay = 0.5;
 float decayCorrected = 0.4;
 
-uint32_t lastDataAvaliableTime = 0;
-
 #define BLUE 1
 #define RED 2
 #define GREEN 4
+
+/*---------------------------------------------------------------------------*/
+void putDouble(double f, int p){
+    printf("%d/%d\n", (int)(f*p), (int)(p));
+}
+/*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
 dataTypes product(dataTypes a, dataTypes b){
@@ -80,7 +90,6 @@ dataTypes product(dataTypes a, dataTypes b){
   temp.energy_cpu = a.energy_cpu * b.energy_cpu;
   temp.energy_rx = a.energy_rx * b.energy_rx;
   temp.energy_tx = a.energy_tx * b.energy_tx;
-  temp.energy_rled = a.energy_rled * b.energy_rled;
   return temp;
 }
 
@@ -94,7 +103,6 @@ dataTypes quocient(dataTypes a, dataTypes b){
   temp.energy_cpu = a.energy_cpu / b.energy_cpu;
   temp.energy_rx = a.energy_rx / b.energy_rx;
   temp.energy_tx = a.energy_tx / b.energy_tx;
-  temp.energy_rled = a.energy_rled / b.energy_rled;
   return temp;
 }
 
@@ -108,7 +116,6 @@ dataTypes quocientConstant(dataTypes a, double b){
   temp.energy_cpu = a.energy_cpu / b;
   temp.energy_rx = a.energy_rx / b;
   temp.energy_tx = a.energy_tx / b;
-  temp.energy_rled = a.energy_rled / b;
   return temp;
 }
 
@@ -122,7 +129,6 @@ dataTypes productConstant(dataTypes a, double b){
   temp.energy_cpu = a.energy_cpu * b;
   temp.energy_rx = a.energy_rx * b;
   temp.energy_tx = a.energy_tx * b;
-  temp.energy_rled = a.energy_rled * b;
   return temp;
 }
 
@@ -136,7 +142,6 @@ dataTypes sum(dataTypes a, dataTypes b){
   temp.energy_cpu = a.energy_cpu + b.energy_cpu;
   temp.energy_rx = a.energy_rx + b.energy_rx;
   temp.energy_tx = a.energy_tx + b.energy_tx;
-  temp.energy_rled = a.energy_rled + b.energy_rled;
   return temp;
 }
 
@@ -150,7 +155,6 @@ dataTypes subtract(dataTypes a, dataTypes b){
   temp.energy_cpu = a.energy_cpu - b.energy_cpu;
   temp.energy_rx = a.energy_rx - b.energy_rx;
   temp.energy_tx = a.energy_tx - b.energy_tx;
-  temp.energy_rled = a.energy_rled - b.energy_rled;
   return temp;
 }
 
@@ -164,20 +168,110 @@ dataTypes subtractConstant(dataTypes a, double b){
   temp.energy_cpu = a.energy_cpu - b;
   temp.energy_rx = a.energy_rx - b;
   temp.energy_tx = a.energy_tx - b;
-  temp.energy_rled = a.energy_rled - b;
   return temp;
 }
 
 void printDataType(dataTypes a){
-  printf("Light 1: %u - ", a.light1);
-  printf("Light 2: %u - ", a.light2);
-  printf("Temperature: %u - ", a.temperature);
-  printf("Humidity: %u - ", a.humidity);
+  printf("Light 1: %d - ", a.light1);
+  printf("Light 2: %d - ", a.light2);
+  printf("Temperature: %d - ", a.temperature);
+  printf("Humidity: %d - ", a.humidity);
   printf("Energy LPM: %lu - ", a.energy_lpm);
   printf("Energy CPU: %lu - ", a.energy_cpu); 
   printf("Energy RX: %lu - ", a.energy_rx);
-  printf("Energy TX: %lu - ", a.energy_tx);
-  printf("Energy Red LED: %lu\n", a.energy_rled);  
+  printf("Energy TX: %lu\n", a.energy_tx);
+}
+
+void printIPV6(uip_ipaddr_t IPV6){
+  printf("%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u:%u\n", 
+    IPV6.u8[0],
+    IPV6.u8[1],
+    IPV6.u8[2],
+    IPV6.u8[3],
+    IPV6.u8[4],
+    IPV6.u8[5],
+    IPV6.u8[6],
+    IPV6.u8[7],
+    IPV6.u8[8],
+    IPV6.u8[9],
+    IPV6.u8[10],
+    IPV6.u8[11],
+    IPV6.u8[12],
+    IPV6.u8[13],
+    IPV6.u8[14],
+    IPV6.u8[15]
+  ); 
+}
+
+void printDebugStep(){
+  printf("################# SENDER DEBUG STEP #################\n");
+  printf("senderMapping:\n");
+  printf("\t 0: ");
+  printIPV6(senderMapping[0]);
+  printf("\t 1: ");
+  printIPV6(senderMapping[1]);
+  printf("\t 2: ");
+  printIPV6(senderMapping[2]);
+  printf("\t 3: ");
+  printIPV6(senderMapping[3]);
+  printf("\n");
+  printf("lengthSenderMapping: %d\n", lengthSenderMapping);
+  printf("\n");
+  printf("avalibleData:\n");
+  printf("\t 0: ");
+  printDataType(avalibleData[0]);
+  printf("\t 1: ");
+  printDataType(avalibleData[1]);
+  printf("\t 2: ");
+  printDataType(avalibleData[2]);
+  printf("\t 3: ");
+  printDataType(avalibleData[3]);
+  printf("\n");
+  printf("dataUsed:\n");
+  printf("\t0: %d - 1: %d - 2: %d - 3: %d\n", dataUsed[0], dataUsed[1], dataUsed[2], dataUsed[3]);
+  printf("\n");
+  printf("tSum: ");
+  putDouble(tSum, DEC4);
+  printf("\n");
+  printf("dSum: \n");
+  printDataType(dSum);
+  printf("\n");
+  printf("tdCovSum: \n");
+  printDataType(tdCovSum);
+  printf("\n");
+  printf("tVarSum: ");
+  putDouble(tVarSum, DEC4);
+  printf("\n");
+  printf("dSumKG: \n");
+  printDataType(dSumKG);
+  printf("\n");
+  printf("tdCovSumKG: \n");
+  printDataType(tdCovSumKG);
+  printf("\n");
+  printf("tVarSumKG: ");
+  putDouble(tVarSumKG, DEC4);
+  printf("\n");
+  printf("a: \n");
+  printDataType(a);
+  printf("\n");
+  printf("b: \n");
+  printDataType(b);
+  printf("\n");
+  printf("aKG: \n");
+  printDataType(aKG);
+  printf("\n");
+  printf("bKG: \n");
+  printDataType(bKG);
+  printf("\n");
+  printf("dataSize: %lu\n", dataSize);
+  printf("\n");
+  printf("decay: ");
+  putDouble(decay, DEC4);    
+  printf("\n");
+  printf("decayCorrected: ");
+  putDouble(decayCorrected, DEC4);
+  printf("\n");
+  printf("######################################################\n");
 }
 
 dataTypes sumConstant(dataTypes a, double b){
@@ -190,7 +284,6 @@ dataTypes sumConstant(dataTypes a, double b){
   temp.energy_cpu = a.energy_cpu + b;
   temp.energy_rx = a.energy_rx + b;
   temp.energy_tx = a.energy_tx + b;
-  temp.energy_rled = a.energy_rled + b;
   return temp;
 }
 /*---------------------------------------------------------------------------*/
@@ -317,7 +410,7 @@ dataTypes predict(uint32_t x, dataTypes a, dataTypes b){
 }
 
 void update(dataTypes d){
-  printDataType(d);
+  printDebugStep();
 
   dataSize++;
   uint32_t t = clock_seconds();
@@ -327,7 +420,7 @@ void update(dataTypes d){
 
   double tAvg = tSum / dataSize;
   dataTypes dAvg = quocientConstant(dSum, dataSize);
-
+  
   a = angularCoef(t, d, tAvg, dAvg, tdCovSum, tVarSum, dataSize);
   b = linearCoef(a, tAvg, dAvg);
 
@@ -345,7 +438,7 @@ void update(dataTypes d){
   tdCovSumKG = updateCovSum(t, tAvg, corrected, dAvgKG, tdCovSumKG, decayCorrected);
   tVarSum =  (decay * tVarSum) + ((t - tAvg)*(t - tAvg));
 
-  printf("Model Updated :)\n");
+  printf("Model Updated at %lu\n", clock_seconds());
 }
 
 void insertDataIntoDataSlot(int index, uint32_t *data){
@@ -357,7 +450,6 @@ void insertDataIntoDataSlot(int index, uint32_t *data){
   avalibleData[index].energy_cpu = data[5];
   avalibleData[index].energy_rx = data[6];
   avalibleData[index].energy_tx = data[7];
-  avalibleData[index].energy_rled = data[8];
   dataUsed[index] = 0;
 }
 
@@ -409,10 +501,11 @@ int getSenderIndex(uip_ipaddr_t sender_addr){
   return lengthSenderMapping-1;
 }
 
-void processIncomingData(uip_ipaddr_t *sender_addr, uint32_t *data){
+void processIncomingData(uip_ipaddr_t *sender_addr, int32_t *data){
   int index = getSenderIndex(*sender_addr);
   if(index != -1){
     insertDataIntoDataSlot(index, data);
+    printDataType(avalibleData[index]);
     if(isDataReady() == 1){
       resetDataReady();
       dataTypes combinedData = combineData();
@@ -430,7 +523,7 @@ receiver(struct simple_udp_connection *c,
          uint16_t sender_port,
          const uip_ipaddr_t *receiver_addr,
          uint16_t receiver_port,
-         const uint32_t *data,
+         const int32_t *data,
          uint16_t datalen)
 {
   leds_on(GREEN);   
@@ -448,6 +541,79 @@ receiver(struct simple_udp_connection *c,
 }
 /*---------------------------------------------------------------------------*/
 
+/*---------------------------------------------------------------------------*/
+uip_ipaddr_t* getSenderMapping(){
+  return senderMapping;
+}
+
+int getLengthSenderMapping(){
+  return lengthSenderMapping;
+}
+
+dataTypes* getAvaliableData(){
+  return avalibleData;
+}
+
+short* getDataUsed(){
+  return dataUsed;
+}
+
+double getTSum(){
+  return tSum;
+}
+
+dataTypes getDSum(){
+  return dSum;
+}
+
+dataTypes getTdCovSum(){
+  return tdCovSum;
+}
+
+double getTVarSum(){
+  return tVarSum;
+}
+
+dataTypes getDSumKG(){
+  return dSumKG;
+}
+
+dataTypes getTdCovSumKG(){
+  return tdCovSumKG;
+}
+
+double getTVarSumKG(){
+  return tVarSumKG;
+}
+
+dataTypes getA(){
+  return a;
+}
+
+dataTypes getB(){
+  return b;
+}
+
+dataTypes getAKG(){
+  return aKG;
+}
+
+dataTypes getBKG(){
+  return bKG;
+}
+
+uint32_t getDataSize(){
+  return dataSize;
+}
+
+float getDecay(){
+  return decay;
+}
+
+float getDecayCorrected(){
+  return decayCorrected;
+}
+/*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(receiver_process, ev, data)
@@ -478,12 +644,10 @@ PROCESS_THREAD(receiver_process, ev, data)
 
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(ev == sensors_event && data == &button_sensor);
-    printf("RECEIVER: Request Data\n");
-
     leds_on(GREEN);  
     leds_off(RED);   
     printf("Prediction: \n");
-    printDataType(predict(clock_seconds(), aKG, bKG));
+    printDataType(predict(clock_seconds(), getAKG(), getBKG()));
     leds_off(GREEN);
   }
 
