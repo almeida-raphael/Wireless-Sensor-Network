@@ -114,27 +114,38 @@ PROCESS_THREAD(sender_process, ev, data)
       SENSORS_ACTIVATE(light_sensor);
       SENSORS_ACTIVATE(sht25);
 
-      uint32_t data[] = {
-        light_sensor.value(LIGHT_SENSOR_PHOTOSYNTHETIC),
-        light_sensor.value(LIGHT_SENSOR_TOTAL_SOLAR),
-        sht25.value(SHT25_VAL_TEMP),
-        sht25.value(SHT25_VAL_HUM),
-        energest_type_time(ENERGEST_TYPE_LPM),
-        energest_type_time(ENERGEST_TYPE_CPU),
-        energest_type_time(ENERGEST_TYPE_LISTEN),
-        energest_type_time(ENERGEST_TYPE_TRANSMIT),
-        energest_type_time(ENERGEST_TYPE_LED_RED)
-      };
+      int light_sensor1 = light_sensor.value(LIGHT_SENSOR_PHOTOSYNTHETIC);
+      int light_sensor2 = light_sensor.value(LIGHT_SENSOR_TOTAL_SOLAR);
+      int16_t temp = sht25.value(SHT25_VAL_TEMP);
+      int16_t hum = sht25.value(SHT25_VAL_HUM);
+      uint32_t e_lpm = energest_type_time(ENERGEST_TYPE_LPM);
+      uint32_t e_cpu = energest_type_time(ENERGEST_TYPE_CPU);
+      uint32_t e_rx = energest_type_time(ENERGEST_TYPE_LISTEN);
+      uint32_t e_tx = energest_type_time(ENERGEST_TYPE_TRANSMIT);
+      //uint32_t e_red_led = energest_type_time(ENERGEST_TYPE_LED_RED);
+
+      int32_t *data = malloc(8*sizeof(int32_t));
+      data[0] = light_sensor1;
+      data[1] = light_sensor2;
+      data[2] = temp;
+      data[3] = hum;
+      data[4] = e_lpm;
+      data[5] = e_cpu;
+      data[6] = e_rx;
+      data[7] = e_tx;
+      //data[8] = e_red_led;
 
       printf("Sending message to ");
       uip_debug_ipaddr_print(addr);
       printf("\n");
 
-      printf("Data: [%u, %u, %u, %u, %lu, %lu, %lu, %lu, %lu]\n",
-        data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+      printf("Data: [%ld, %ld, %ld, %ld, %lu, %lu, %lu, %lu, %lu]\n",
+        data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]//, data[8]
       );
 
-      simple_udp_sendto(&connection, data, sizeof(data), addr);
+      simple_udp_sendto(&connection, data, sizeof(int32_t)*8, addr);
+
+      free(data);
 
       leds_off(GREEN);
     } else {
