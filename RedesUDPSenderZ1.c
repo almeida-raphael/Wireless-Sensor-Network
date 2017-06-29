@@ -24,7 +24,7 @@
 #define UDP_PORT 1234
 #define SERVICE_ID 190
 
-#define SEND_INTERVAL   (60 * CLOCK_SECOND)
+#define SEND_INTERVAL   (30 * CLOCK_SECOND)
 #define SEND_TIME   (random_rand() % (SEND_INTERVAL))
 /*---------------------------------------------------------------------------*/
 
@@ -37,6 +37,11 @@ static struct simple_udp_connection connection;
 #define RED 2
 #define GREEN 4
 /*---------------------------------------------------------------------------*/
+
+uint32_t old_e_lpm;
+uint32_t old_e_cpu;
+uint32_t old_e_rx;
+uint32_t old_e_tx;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(sender_process, "Sender process");
@@ -80,7 +85,7 @@ set_global_address(void)
     }
   }
 }
-/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/ 
 
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(sender_process, ev, data)
@@ -100,6 +105,10 @@ PROCESS_THREAD(sender_process, ev, data)
 
   etimer_set(&periodic_timer, SEND_INTERVAL);
 
+  old_e_cpu = energest_type_time(ENERGEST_TYPE_CPU);
+  old_e_rx = energest_type_time(ENERGEST_TYPE_LISTEN);
+  old_e_tx = energest_type_time(ENERGEST_TYPE_TRANSMIT);
+
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
     etimer_reset(&periodic_timer);
@@ -118,32 +127,35 @@ PROCESS_THREAD(sender_process, ev, data)
       int light_sensor2 = light_sensor.value(LIGHT_SENSOR_TOTAL_SOLAR);
       int16_t temp = sht25.value(SHT25_VAL_TEMP);
       int16_t hum = sht25.value(SHT25_VAL_HUM);
-      uint32_t e_lpm = energest_type_time(ENERGEST_TYPE_LPM);
       uint32_t e_cpu = energest_type_time(ENERGEST_TYPE_CPU);
       uint32_t e_rx = energest_type_time(ENERGEST_TYPE_LISTEN);
       uint32_t e_tx = energest_type_time(ENERGEST_TYPE_TRANSMIT);
-      //uint32_t e_red_led = energest_type_time(ENERGEST_TYPE_LED_RED);
 
-      int32_t *data = malloc(8*sizeof(int32_t));
+      uint32_t cpu_variation = e_cpu - old_e_cpu;
+      uint32_t rx_variation = e_rx - old_e_rx;
+      uint32_t tx_variation = e_tx - old_e_tx;
+
+      int32_t energy_cpu = ((double)(cpu_variation)*10*3.6)/RTIMER_ARCH_SECOND;
+      int32_t energy_network = (((double)(tx_variation)*17.4*3.6)/RTIMER_ARCH_SECOND) + (((double)(rx_variation)*18.8*3.6)/RTIMER_ARCH_SECOND);
+
+      int32_t *data = malloc(5*sizeof(int32_t));
       data[0] = light_sensor1;
       data[1] = light_sensor2;
       data[2] = temp;
       data[3] = hum;
-      data[4] = e_lpm;
-      data[5] = e_cpu;
-      data[6] = e_rx;
-      data[7] = e_tx;
-      //data[8] = e_red_led;
+      data[4] = energy_cpu + energy_network;
+
+      old_e_cpu = e_cpu;
+      old_e_rx = e_rx;
+      old_e_tx = e_tx;  
 
       printf("Sending message to ");
       uip_debug_ipaddr_print(addr);
       printf("\n");
 
-      printf("Data: [%ld, %ld, %ld, %ld, %lu, %lu, %lu, %lu, %lu]\n",
-        data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]//, data[8]
-      );
+      printf("Data: [%ld, %ld, %ld, %ld, %lu]\n", data[0], data[1], data[2], data[3], data[4]);
 
-      simple_udp_sendto(&connection, data, sizeof(int32_t)*8, addr);
+      simple_udp_sendto(&connection, data, sizeof(int32_t)*5, addr);
 
       free(data);
 
