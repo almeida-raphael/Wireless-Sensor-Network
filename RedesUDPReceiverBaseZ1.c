@@ -16,13 +16,11 @@
 #include "net/rpl/rpl.h"
 
 #include "dev/leds.h"
-#include "dev/button-sensor.h"
 
 #define UDP_PORT 1234
 #define SERVICE_ID 190
 
 #define SEND_INTERVAL   (10 * CLOCK_SECOND)
-#define SEND_TIME   (random_rand() % (SEND_INTERVAL))
 
 static struct simple_udp_connection connection;
 
@@ -30,25 +28,26 @@ static struct simple_udp_connection connection;
 #define DEC2 100
 #define DEC3 1000
 #define DEC4 10000
-#define DEC5 100000
-#define DEC6 1000000
+
+#define true 1
+#define false 0
+
+#define SEND_INTERVAL   (20 * CLOCK_SECOND)
+#define SEND_TIME   (random_rand() % (SEND_INTERVAL))
 
 typedef struct {
-  int light1;
-  int light2;
-  int16_t temperature;
-  int16_t humidity;
-  uint32_t energy_lpm;
-  uint32_t energy_cpu;
-  uint32_t energy_rx;
-  uint32_t energy_tx;
+  double light1;
+  double light2;
+  double temperature;
+  double humidity;
+  double energy_comsumption;
 } dataTypes;
 
 uip_ipaddr_t senderMapping[4];
-int lengthSenderMapping = 0;  
+int32_t lengthSenderMapping = 0;  
 
-dataTypes avalibleData[4];
-short dataUsed[4] = {1,1,1,1};
+dataTypes avalibleData[4];  
+short dataUsed[4] = {true,true,true,true};
 
 double tSum = 0;
 dataTypes dSum;
@@ -64,18 +63,28 @@ dataTypes b;
 dataTypes aKG;
 dataTypes bKG;
 
-uint32_t dataSize = 0;
+int32_t dataSize = 0;
 
-float decay = 0.5;
-float decayCorrected = 0.4;
+double decay = 0.5;
+double decayCorrected = 0.4;
 
 #define BLUE 1
 #define RED 2
 #define GREEN 4
 
 /*---------------------------------------------------------------------------*/
-void putDouble(double f, int p){
-    printf("%d/%d\n", (int)(f*p), (int)(p));
+void printDouble(const char* format, double number, int32_t decimal){
+    printf(format, (int32_t)(number*decimal), (int32_t)(decimal));
+}
+
+dataTypes initDataType(){
+  dataTypes temp;
+  temp.light1 = 0;
+  temp.light2 = 0;
+  temp.temperature = 0;
+  temp.humidity = 0;
+  temp.energy_comsumption = 0;
+  return temp;
 }
 /*---------------------------------------------------------------------------*/
 
@@ -86,37 +95,36 @@ dataTypes product(dataTypes a, dataTypes b){
   temp.light2 = a.light2 * b.light2;
   temp.temperature = a.temperature * b.temperature;
   temp.humidity = a.humidity * b.humidity;
-  temp.energy_lpm = a.energy_lpm * b.energy_lpm;
-  temp.energy_cpu = a.energy_cpu * b.energy_cpu;
-  temp.energy_rx = a.energy_rx * b.energy_rx;
-  temp.energy_tx = a.energy_tx * b.energy_tx;
+  temp.energy_comsumption = a.energy_comsumption * b.energy_comsumption;
   return temp;
 }
 
 dataTypes quocient(dataTypes a, dataTypes b){
   dataTypes temp;
-  temp.light1 = a.light1 / b.light1;
-  temp.light2 = a.light2 / b.light2;
-  temp.temperature = a.temperature / b.temperature;
-  temp.humidity = a.humidity / b.humidity;
-  temp.energy_lpm = a.energy_lpm / b.energy_lpm;
-  temp.energy_cpu = a.energy_cpu / b.energy_cpu;
-  temp.energy_rx = a.energy_rx / b.energy_rx;
-  temp.energy_tx = a.energy_tx / b.energy_tx;
+  temp.light1 = b.light1 == 0 ? 0 : (a.light1 / b.light1);
+  temp.light2 = b.light2 == 0 ? 0 : (a.light2 / b.light2);
+  temp.temperature = b.temperature == 0 ? 0 : (a.temperature / b.temperature);
+  temp.humidity = b.humidity == 0 ? 0 : (a.humidity / b.humidity);
+  temp.energy_comsumption = b.energy_comsumption == 0 ? 0 : (a.energy_comsumption / b.energy_comsumption);
   return temp;
 }
 
 dataTypes quocientConstant(dataTypes a, double b){
   dataTypes temp;
-  temp.light1 = a.light1 / b;
-  temp.light2 = a.light2 / b;
-  temp.temperature = a.temperature / b;
-  temp.humidity = a.humidity / b;
-  temp.energy_lpm = a.energy_lpm / b;
-  temp.energy_cpu = a.energy_cpu / b;
-  temp.energy_rx = a.energy_rx / b;
-  temp.energy_tx = a.energy_tx / b;
-  return temp;
+  if(b == 0){
+    temp.light1 = 0;
+    temp.light2 = 0;
+    temp.temperature = 0;
+    temp.humidity = 0;
+    temp.energy_comsumption = 0; 
+  }else{
+    temp.light1 =  a.light1 / b;
+    temp.light2 = a.light2 / b;
+    temp.temperature = a.temperature / b;
+    temp.humidity = a.humidity / b;
+    temp.energy_comsumption = a.energy_comsumption / b;
+  }
+  return temp;    
 }
 
 dataTypes productConstant(dataTypes a, double b){
@@ -125,10 +133,7 @@ dataTypes productConstant(dataTypes a, double b){
   temp.light2 = a.light2 * b;
   temp.temperature = a.temperature * b;
   temp.humidity = a.humidity * b;
-  temp.energy_lpm = a.energy_lpm * b;
-  temp.energy_cpu = a.energy_cpu * b;
-  temp.energy_rx = a.energy_rx * b;
-  temp.energy_tx = a.energy_tx * b;
+  temp.energy_comsumption = a.energy_comsumption * b;
   return temp;
 }
 
@@ -138,10 +143,7 @@ dataTypes sum(dataTypes a, dataTypes b){
   temp.light2 = a.light2 + b.light2;
   temp.temperature = a.temperature + b.temperature;
   temp.humidity = a.humidity + b.humidity;
-  temp.energy_lpm = a.energy_lpm + b.energy_lpm;
-  temp.energy_cpu = a.energy_cpu + b.energy_cpu;
-  temp.energy_rx = a.energy_rx + b.energy_rx;
-  temp.energy_tx = a.energy_tx + b.energy_tx;
+  temp.energy_comsumption = a.energy_comsumption + b.energy_comsumption;
   return temp;
 }
 
@@ -151,10 +153,7 @@ dataTypes subtract(dataTypes a, dataTypes b){
   temp.light2 = a.light2 - b.light2;
   temp.temperature = a.temperature - b.temperature;
   temp.humidity = a.humidity - b.humidity;
-  temp.energy_lpm = a.energy_lpm - b.energy_lpm;
-  temp.energy_cpu = a.energy_cpu - b.energy_cpu;
-  temp.energy_rx = a.energy_rx - b.energy_rx;
-  temp.energy_tx = a.energy_tx - b.energy_tx;
+  temp.energy_comsumption = a.energy_comsumption - b.energy_comsumption;
   return temp;
 }
 
@@ -164,22 +163,19 @@ dataTypes subtractConstant(dataTypes a, double b){
   temp.light2 = a.light2 - b;
   temp.temperature = a.temperature - b;
   temp.humidity = a.humidity - b;
-  temp.energy_lpm = a.energy_lpm - b;
-  temp.energy_cpu = a.energy_cpu - b;
-  temp.energy_rx = a.energy_rx - b;
-  temp.energy_tx = a.energy_tx - b;
+  temp.energy_comsumption = a.energy_comsumption - b;
   return temp;
 }
 
-void printDataType(dataTypes a){
-  printf("Light 1: %d - ", a.light1);
-  printf("Light 2: %d - ", a.light2);
-  printf("Temperature: %d - ", a.temperature);
-  printf("Humidity: %d - ", a.humidity);
-  printf("Energy LPM: %lu - ", a.energy_lpm);
-  printf("Energy CPU: %lu - ", a.energy_cpu); 
-  printf("Energy RX: %lu - ", a.energy_rx);
-  printf("Energy TX: %lu\n", a.energy_tx);
+void printDataType(dataTypes a, short newLine){
+  printDouble("Light 1: %ld/%ld - ", a.light1, DEC4);
+  printDouble("Light 2: %ld/%ld - ", a.light2, DEC4);
+  printDouble("Temperature: %ld/%ld - ", a.temperature, DEC4);
+  printDouble("Humidity: %ld/%ld - ", a.humidity, DEC4);
+  printDouble("Energy Consumption: %ld/%ld", a.energy_comsumption, DEC4);
+  if(newLine == true){
+    printf("\n");
+  }
 }
 
 void printIPV6(uip_ipaddr_t IPV6){
@@ -215,61 +211,56 @@ void printDebugStep(){
   printf("\t 3: ");
   printIPV6(senderMapping[3]);
   printf("\n");
-  printf("lengthSenderMapping: %d\n", lengthSenderMapping);
+  printf("lengthSenderMapping: %ld\n", lengthSenderMapping);
   printf("\n");
   printf("avalibleData:\n");
   printf("\t 0: ");
-  printDataType(avalibleData[0]);
+  printDataType(avalibleData[0], true);
   printf("\t 1: ");
-  printDataType(avalibleData[1]);
+  printDataType(avalibleData[1], true);
   printf("\t 2: ");
-  printDataType(avalibleData[2]);
+  printDataType(avalibleData[2], true);
   printf("\t 3: ");
-  printDataType(avalibleData[3]);
+  printDataType(avalibleData[3], true);
   printf("\n");
   printf("dataUsed:\n");
   printf("\t0: %d - 1: %d - 2: %d - 3: %d\n", dataUsed[0], dataUsed[1], dataUsed[2], dataUsed[3]);
   printf("\n");
-  printf("tSum: ");
-  putDouble(tSum, DEC4);
+  printDouble("tSum: %ld/%ld", tSum, DEC4);
   printf("\n");
   printf("dSum: \n");
-  printDataType(dSum);
+  printDataType(dSum, true);
   printf("\n");
   printf("tdCovSum: \n");
-  printDataType(tdCovSum);
+  printDataType(tdCovSum, true);
   printf("\n");
-  printf("tVarSum: ");
-  putDouble(tVarSum, DEC4);
+  printDouble("tVarSum: %ld/%ld", tVarSum, DEC4);
   printf("\n");
   printf("dSumKG: \n");
-  printDataType(dSumKG);
+  printDataType(dSumKG, true);
   printf("\n");
   printf("tdCovSumKG: \n");
-  printDataType(tdCovSumKG);
+  printDataType(tdCovSumKG, true);
   printf("\n");
-  printf("tVarSumKG: ");
-  putDouble(tVarSumKG, DEC4);
+  printDouble("tVarSumKG: %ld/%ld", tVarSumKG, DEC4);
   printf("\n");
   printf("a: \n");
-  printDataType(a);
+  printDataType(a, true);
   printf("\n");
   printf("b: \n");
-  printDataType(b);
+  printDataType(b, true);
   printf("\n");
   printf("aKG: \n");
-  printDataType(aKG);
+  printDataType(aKG, true);
   printf("\n");
   printf("bKG: \n");
-  printDataType(bKG);
+  printDataType(bKG, true);
   printf("\n");
   printf("dataSize: %lu\n", dataSize);
   printf("\n");
-  printf("decay: ");
-  putDouble(decay, DEC4);    
+  printDouble("decay: %ld/%ld", decay, DEC4);    
   printf("\n");
-  printf("decayCorrected: ");
-  putDouble(decayCorrected, DEC4);
+  printDouble("decayCorrected: %ld/%ld", decayCorrected, DEC4);
   printf("\n");
   printf("######################################################\n");
 }
@@ -280,10 +271,7 @@ dataTypes sumConstant(dataTypes a, double b){
   temp.light2 = a.light2 + b;
   temp.temperature = a.temperature + b;
   temp.humidity = a.humidity + b;
-  temp.energy_lpm = a.energy_lpm + b;
-  temp.energy_cpu = a.energy_cpu + b;
-  temp.energy_rx = a.energy_rx + b;
-  temp.energy_tx = a.energy_tx + b;
+  temp.energy_comsumption = a.energy_comsumption + b;
   return temp;
 }
 /*---------------------------------------------------------------------------*/
@@ -292,10 +280,10 @@ int compareIPV6(uip_ipaddr_t ip1, uip_ipaddr_t ip2){
   int i;
   for(i = 0; i < 16; i++){
     if(ip1.u8[i] != ip2.u8[i]){
-      return 0;
+      return false;
     }
   }
-  return 1;
+  return true;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -351,7 +339,7 @@ AUTOSTART_PROCESSES(&receiver_process);
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
-dataTypes calcCov(uint32_t x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes covSum, int dataSize){
+dataTypes calcCov(double x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes covSum, double dataSize){
   return 
     quocientConstant(
       sum(
@@ -369,7 +357,7 @@ dataTypes calcCov(uint32_t x, dataTypes y, double xAvg, dataTypes yAvg, dataType
   ;
 }
 
-dataTypes updateCovSum(uint32_t x, double xAvg, dataTypes y, dataTypes yAvg, dataTypes xyCovSum, double decay){
+dataTypes updateCovSum(double x, double xAvg, dataTypes y, dataTypes yAvg, dataTypes xyCovSum, double decay){
   return
     sum(
       productConstant(
@@ -387,8 +375,8 @@ dataTypes updateCovSum(uint32_t x, double xAvg, dataTypes y, dataTypes yAvg, dat
   ; 
 }
 
-dataTypes angularCoef(uint32_t x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes xyCovSum, double xxCovSum, uint32_t dataSize){
-  return quocientConstant(calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize), ((xxCovSum + ((x-xAvg)*(x-xAvg))) / (dataSize - 1 + 1e-10)));
+dataTypes angularCoef(double x, dataTypes y, double xAvg, dataTypes yAvg, dataTypes xyCovSum, double xxCovSum, double dataSize){
+  return quocientConstant(calcCov(x, y, xAvg, yAvg, xyCovSum, dataSize), ((xxCovSum + ((x-xAvg)*(x-xAvg))) / (dataSize == 1 ? 1 : (dataSize-1))));
 }
 
 dataTypes linearCoef(dataTypes ang, double xAvg, dataTypes yAvg){
@@ -405,23 +393,24 @@ dataTypes kalmanFilter(dataTypes estimate, dataTypes measurement){
 /*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
-dataTypes predict(uint32_t x, dataTypes a, dataTypes b){
+dataTypes predict(double x, dataTypes a, dataTypes b){
   return sum(productConstant(a, x), b);
 }
 
 void update(dataTypes d){
-  printDebugStep();
+  //printDebugStep();
 
   dataSize++;
-  uint32_t t = clock_seconds();
 
-  tSum += t;
+  double t = clock_seconds();
+
+  tSum = tSum + t;
   dSum = sum(dSum, d);
 
   double tAvg = tSum / dataSize;
   dataTypes dAvg = quocientConstant(dSum, dataSize);
   
-  a = angularCoef(t, d, tAvg, dAvg, tdCovSum, tVarSum, dataSize);
+  a = dataSize == 1 ? initDataType() : angularCoef(t, d, tAvg, dAvg, tdCovSum, tVarSum, dataSize);
   b = linearCoef(a, tAvg, dAvg);
 
   dataTypes predict = sum(productConstant(a, t), b);
@@ -431,32 +420,40 @@ void update(dataTypes d){
 
   dataTypes dAvgKG = quocientConstant(dSumKG, dataSize);
 
-  aKG = angularCoef(t, corrected, tAvg, dAvgKG, tdCovSumKG, tVarSum, dataSize);
+  aKG = dataSize == 1 ? initDataType() : angularCoef(t, corrected, tAvg, dAvgKG, tdCovSumKG, tVarSum, dataSize);
   bKG = linearCoef(aKG, tAvg, dAvgKG);
 
   tdCovSum = updateCovSum(t, tAvg, d, dAvg, tdCovSum, decay);
   tdCovSumKG = updateCovSum(t, tAvg, corrected, dAvgKG, tdCovSumKG, decayCorrected);
   tVarSum =  (decay * tVarSum) + ((t - tAvg)*(t - tAvg));
 
-  printf("Model Updated at %lu\n", clock_seconds());
+  //printDebugStep();
+  printf("Model Updated - ");
+  printf("Average: ");
+  printDataType(d, false);
+  printDouble(" - Time: %ld/%ld - a: ", t, DEC4);
+  printDataType(a, false);
+  printf(" - b: ");
+  printDataType(b, false);
+  printf(" - aKG: ", t);
+  printDataType(a, false);
+  printf(" - bKG: ");
+  printDataType(b, true);
 }
 
-void insertDataIntoDataSlot(int index, uint32_t *data){
+void insertDataIntoDataSlot(int index, int32_t *data){
   avalibleData[index].light1 = data[0];
   avalibleData[index].light2 = data[1];
   avalibleData[index].temperature = data[2];
   avalibleData[index].humidity = data[3];
-  avalibleData[index].energy_lpm = data[4];
-  avalibleData[index].energy_cpu = data[5];
-  avalibleData[index].energy_rx = data[6];
-  avalibleData[index].energy_tx = data[7];
+  avalibleData[index].energy_comsumption = data[4];
   dataUsed[index] = 0;
 }
 
 int isDataReady(){
   int i;
   for(i = 0; i < 4; i++){
-    if(dataUsed[i] == 1){
+    if(dataUsed[i] == true){
       return 0;
     }
   }
@@ -466,14 +463,8 @@ int isDataReady(){
 void resetDataReady(){
   int i;
   for(i = 0; i < 4; i++){
-    dataUsed[i] = 1;
+    dataUsed[i] = true;
   }
-}
-
-dataTypes initDataType(){
-  dataTypes temp;
-  temp = productConstant(temp, 0);
-  return temp;
 }
 
 dataTypes combineData(){
@@ -505,7 +496,7 @@ void processIncomingData(uip_ipaddr_t *sender_addr, int32_t *data){
   int index = getSenderIndex(*sender_addr);
   if(index != -1){
     insertDataIntoDataSlot(index, data);
-    printDataType(avalibleData[index]);
+    printDataType(avalibleData[index], true);
     if(isDataReady() == 1){
       resetDataReady();
       dataTypes combinedData = combineData();
@@ -514,7 +505,6 @@ void processIncomingData(uip_ipaddr_t *sender_addr, int32_t *data){
   }
 }
 /*---------------------------------------------------------------------------*/
-
 
 /*---------------------------------------------------------------------------*/
 static void
@@ -532,7 +522,7 @@ receiver(struct simple_udp_connection *c,
   printf("RECEIVER: Data received from ");
   uip_debug_ipaddr_print(sender_addr);
 
-  printf(" on port %d from port %d with length %d\n",
+  printf(" on port %ld from port %ld with length %ld\n",
          receiver_port, sender_port, datalen);
 
   processIncomingData(sender_addr, data);
@@ -566,7 +556,7 @@ dataTypes getDSum(){
   return dSum;
 }
 
-dataTypes getTdCovSum(){
+dataTypes getTdCovSum(){  
   return tdCovSum;
 }
 
@@ -576,7 +566,7 @@ double getTVarSum(){
 
 dataTypes getDSumKG(){
   return dSumKG;
-}
+}   
 
 dataTypes getTdCovSumKG(){
   return tdCovSumKG;
@@ -602,15 +592,15 @@ dataTypes getBKG(){
   return bKG;
 }
 
-uint32_t getDataSize(){
+double getDataSize(){
   return dataSize;
 }
 
-float getDecay(){
+double getDecay(){
   return decay;
 }
 
-float getDecayCorrected(){
+double getDecayCorrected(){
   return decayCorrected;
 }
 /*---------------------------------------------------------------------------*/
@@ -620,6 +610,8 @@ PROCESS_THREAD(receiver_process, ev, data)
 {
   uip_ipaddr_t *ipaddr;
   
+  static struct etimer send_timer;
+
   dataTypes dSum = initDataType();
   dataTypes tdCovSum = initDataType();
   dataTypes dSumKG = initDataType();
@@ -640,14 +632,17 @@ PROCESS_THREAD(receiver_process, ev, data)
   simple_udp_register(&connection, UDP_PORT,
                       NULL, UDP_PORT, receiver);
 
-  SENSORS_ACTIVATE(button_sensor);
-
   while(1) {
-    PROCESS_WAIT_EVENT_UNTIL(ev == sensors_event && data == &button_sensor);
+    etimer_set(&send_timer, SEND_INTERVAL);
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&send_timer));
+
     leds_on(GREEN);  
     leds_off(RED);   
-    printf("Prediction: \n");
-    printDataType(predict(clock_seconds(), getAKG(), getBKG()));
+    if(dataSize >= 2){  
+      printf("Prediction: ");
+      printDataType(predict(clock_seconds(), getAKG(), getBKG()), false);
+      printf(" - Time: %ld\n", clock_seconds());
+    }
     leds_off(GREEN);
   }
 
