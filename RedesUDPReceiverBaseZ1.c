@@ -436,9 +436,9 @@ void update(dataTypes d){
   printf(" - b: ");
   printDataType(b, false);
   printf(" - aKG: ", t);
-  printDataType(a, false);
+  printDataType(aKG, false);
   printf(" - bKG: ");
-  printDataType(b, true);
+  printDataType(bKG, true);
 }
 
 void insertDataIntoDataSlot(int index, int32_t *data){
