@@ -1,0 +1,569 @@
+00:02.908	ID:2	Rime started with address 193.12.0.0.0.0.0.2
+00:02.921	ID:2	MAC c1:0c:00:00:00:00:00:02 Contiki 3.0 started. Node id is set to 2.
+00:02.931	ID:2	CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:02.947	ID:2	Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0002
+00:02.951	ID:2	Starting 'Sender process'
+00:02.958	ID:2	IPv6 addresses: aaaa::c30c:0:0:2
+00:02.961	ID:2	fe80::c30c:0:0:2
+00:03.020	ID:4	Rime started with address 193.12.0.0.0.0.0.4
+00:03.034	ID:4	MAC c1:0c:00:00:00:00:00:04 Contiki 3.0 started. Node id is set to 4.
+00:03.044	ID:4	CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:03.056	ID:1	Rime started with address 193.12.0.0.0.0.0.1
+00:03.059	ID:4	Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0004
+00:03.063	ID:4	Starting 'Sender process'
+00:03.069	ID:1	MAC c1:0c:00:00:00:00:00:01 Contiki 3.0 started. Node id is set to 1.
+00:03.070	ID:4	IPv6 addresses: aaaa::c30c:0:0:4
+00:03.074	ID:4	fe80::c30c:0:0:4
+00:03.079	ID:1	CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:03.095	ID:1	Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0001
+00:03.099	ID:1	Starting 'Receiver process'
+00:03.106	ID:1	IPv6 addresses: aaaa::c30c:0:0:1
+00:03.109	ID:1	fe80::c30c:0:0:1
+00:03.114	ID:1	created a new RPL dag
+00:03.387	ID:5	Rime started with address 193.12.0.0.0.0.0.5
+00:03.400	ID:5	MAC c1:0c:00:00:00:00:00:05 Contiki 3.0 started. Node id is set to 5.
+00:03.410	ID:5	CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:03.426	ID:5	Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0005
+00:03.430	ID:5	Starting 'Sender process'
+00:03.437	ID:5	IPv6 addresses: aaaa::c30c:0:0:5
+00:03.440	ID:5	fe80::c30c:0:0:5
+00:03.571	ID:3	Rime started with address 193.12.0.0.0.0.0.3
+00:03.585	ID:3	MAC c1:0c:00:00:00:00:00:03 Contiki 3.0 started. Node id is set to 3.
+00:03.595	ID:3	CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+00:03.610	ID:3	Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0003
+00:03.614	ID:3	Starting 'Sender process'
+00:03.621	ID:3	IPv6 addresses: aaaa::c30c:0:0:3
+00:03.625	ID:3	fe80::c30c:0:0:3
+01:07.360	ID:5	Sending message to aaaa::c30c:0:0:1
+01:07.368	ID:5	Data: [0, 100, -4685, -600, 94]
+01:07.600	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+01:07.621	ID:1	Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 940000/10000
+01:22.133	ID:4	Sending message to aaaa::c30c:0:0:1
+01:22.142	ID:4	Data: [0, 100, -4685, -600, 113]
+01:22.350	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+01:22.372	ID:1	Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 1130000/10000
+01:45.662	ID:2	Sending message to aaaa::c30c:0:0:1
+01:45.670	ID:2	Data: [0, 100, -4685, -600, 132]
+01:45.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+01:45.875	ID:1	Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 1320000/10000
+01:50.981	ID:3	Sending message to aaaa::c30c:0:0:1
+01:50.989	ID:3	Data: [0, 100, -4685, -600, 96]
+01:51.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+01:51.125	ID:1	Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 960000/10000
+01:51.250	ID:1	Model Updated - Average: Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 1087500/10000 - Time: 540000/10000 - a: Light 1: 0/10000 - Light 2: 0/10000 - Energy Consumption: 0/10000 - b: Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 1087500/10000 - aKG: Light 1: 0/10000 - Light 2: 0/10000 - Energy Consumption: 0/10000 - bKG: Light 1: 0/10000 - Light 2: 1000000/10000 - Energy Consumption: 1087500/10000
+02:06.602	ID:4	Sending message to aaaa::c30c:0:0:1
+02:06.610	ID:4	Data: [73, 66, -4685, -600, 30]
+02:06.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+02:06.876	ID:1	Light 1: 730000/10000 - Light 2: 660000/10000 - Energy Consumption: 300000/10000
+02:45.203	ID:5	Sending message to aaaa::c30c:0:0:1
+02:45.212	ID:5	Data: [178, 171, -4685, -600, 68]
+02:45.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+02:45.377	ID:1	Light 1: 1780000/10000 - Light 2: 1710000/10000 - Energy Consumption: 680000/10000
+02:46.325	ID:3	Sending message to aaaa::c30c:0:0:1
+02:46.333	ID:3	Data: [104, 97, -4685, -600, 49]
+02:46.600	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+02:46.624	ID:1	Light 1: 1040000/10000 - Light 2: 970000/10000 - Energy Consumption: 490000/10000
+02:52.755	ID:2	Sending message to aaaa::c30c:0:0:1
+02:52.764	ID:2	Data: [97, 90, -4685, -600, 53]
+02:52.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+02:52.874	ID:1	Light 1: 970000/10000 - Light 2: 900000/10000 - Energy Consumption: 530000/10000
+02:53.039	ID:1	Model Updated - Average: Light 1: 1130000/10000 - Light 2: 1060000/10000 - Energy Consumption: 500000/10000 - Time: 850000/10000 - a: Light 1: 36451/10000 - Light 2: 1935/10000 - Energy Consumption: -18951/10000 - b: Light 1: -1968387/10000 - Light 2: 895483/10000 - Energy Consumption: 2110887/10000 - aKG: Light 1: 36451/10000 - Light 2: 1935/10000 - Energy Consumption: -18951/10000 - bKG: Light 1: -1968387/10000 - Light 2: 895483/10000 - Energy Consumption: 2110887/10000
+03:06.969	ID:5	Sending message to aaaa::c30c:0:0:1
+03:06.977	ID:5	Data: [23, 16, -4685, -600, 10]
+03:07.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+03:07.124	ID:1	Light 1: 230000/10000 - Light 2: 160000/10000 - Energy Consumption: 100000/10000
+03:10.262	ID:3	Sending message to aaaa::c30c:0:0:1
+03:10.271	ID:3	Data: [148, 141, -4685, -600, 17]
+03:10.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+03:10.376	ID:1	Light 1: 1480000/10000 - Light 2: 1410000/10000 - Energy Consumption: 170000/10000
+03:23.140	ID:1	Prediction: Light 1: 1676774/10000 - Light 2: 1089032/10000 - Energy Consumption: 215725/10000 - Time: 100
+03:24.537	ID:2	Sending message to aaaa::c30c:0:0:1
+03:24.546	ID:2	Data: [236, 229, -4685, -600, 10]
+03:24.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+03:24.627	ID:1	Light 1: 2360000/10000 - Light 2: 2290000/10000 - Energy Consumption: 100000/10000
+03:28.508	ID:4	Sending message to aaaa::c30c:0:0:1
+03:28.516	ID:4	Data: [42, 35, -4685, -600, 59]
+03:28.600	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+03:28.623	ID:1	Light 1: 420000/10000 - Light 2: 350000/10000 - Energy Consumption: 590000/10000
+03:28.793	ID:1	Model Updated - Average: Light 1: 1122500/10000 - Light 2: 1052500/10000 - Energy Consumption: 240000/10000 - Time: 1030000/10000 - a: Light 1: 23081/10000 - Light 2: 1082/10000 - Energy Consumption: -17317/10000 - b: Light 1: -1111094/10000 - Light 2: 950178/10000 - Energy Consumption: 2006082/10000 - aKG: Light 1: 24443/10000 - Light 2: 1174/10000 - Energy Consumption: -17500/10000 - bKG: Light 1: -1198400/10000 - Light 2: 944276/10000 - Energy Consumption: 2017871/10000
+04:03.156	ID:1	Prediction: Light 1: 1734798/10000 - Light 2: 1085221/10000 - Energy Consumption: -82247/10000 - Time: 120
+04:22.856	ID:3	Sending message to aaaa::c30c:0:0:1
+04:22.865	ID:3	Data: [243, 236, -4685, -600, 45]
+04:23.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+04:23.125	ID:1	Light 1: 2430000/10000 - Light 2: 2360000/10000 - Energy Consumption: 450000/10000
+04:27.977	ID:4	Sending message to aaaa::c30c:0:0:1
+04:27.985	ID:4	Data: [52, 45, -4685, -600, 38]
+04:28.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+04:28.126	ID:1	Light 1: 520000/10000 - Light 2: 450000/10000 - Energy Consumption: 380000/10000
+04:40.188	ID:5	Sending message to aaaa::c30c:0:0:1
+04:40.197	ID:5	Data: [218, 211, -4685, -600, 47]
+04:40.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+04:40.375	ID:1	Light 1: 2180000/10000 - Light 2: 2110000/10000 - Energy Consumption: 470000/10000
+04:43.172	ID:1	Prediction: Light 1: 2223664/10000 - Light 2: 1108711/10000 - Energy Consumption: -432267/10000 - Time: 140
+05:02.631	ID:2	Sending message to aaaa::c30c:0:0:1
+05:02.639	ID:2	Data: [234, 227, -4685, -600, 55]
+05:03.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+05:03.128	ID:1	Light 1: 2340000/10000 - Light 2: 2270000/10000 - Energy Consumption: 550000/10000
+05:03.296	ID:1	Model Updated - Average: Light 1: 1867500/10000 - Light 2: 1797500/10000 - Energy Consumption: 462500/10000 - Time: 1500000/10000 - a: Light 1: 16921/10000 - Light 2: 9090/10000 - Energy Consumption: -4887/10000 - b: Light 1: -628330/10000 - Light 2: 336611/10000 - Energy Consumption: 1051492/10000 - aKG: Light 1: 16942/10000 - Light 2: 8492/10000 - Energy Consumption: -5758/10000 - bKG: Light 1: -608255/10000 - Light 2: 383875/10000 - Energy Consumption: 1113156/10000
+05:19.412	ID:2	Sending message to aaaa::c30c:0:0:1
+05:19.421	ID:2	Data: [108, 101, -4685, -600, 10]
+05:19.600	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+05:19.624	ID:1	Light 1: 1080000/10000 - Light 2: 1010000/10000 - Energy Consumption: 100000/10000
+05:22.672	ID:5	Sending message to aaaa::c30c:0:0:1
+05:22.680	ID:5	Data: [85, 78, -4685, -600, 17]
+05:22.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+05:22.874	ID:1	Light 1: 850000/10000 - Light 2: 780000/10000 - Energy Consumption: 170000/10000
+05:23.187	ID:1	Prediction: Light 1: 2102594/10000 - Light 2: 1742679/10000 - Energy Consumption: 191875/10000 - Time: 160
+05:28.528	ID:3	Sending message to aaaa::c30c:0:0:1
+05:28.536	ID:3	Data: [73, 66, -4685, -600, 36]
+05:28.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+05:28.627	ID:1	Light 1: 730000/10000 - Light 2: 660000/10000 - Energy Consumption: 360000/10000
+05:42.180	ID:4	Sending message to aaaa::c30c:0:0:1
+05:42.189	ID:4	Data: [165, 158, -4685, -600, 34]
+05:42.350	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+05:42.374	ID:1	Light 1: 1650000/10000 - Light 2: 1580000/10000 - Energy Consumption: 340000/10000
+05:42.540	ID:1	Model Updated - Average: Light 1: 1077500/10000 - Light 2: 1007500/10000 - Energy Consumption: 242500/10000 - Time: 1700000/10000 - a: Light 1: 8225/10000 - Light 2: 3125/10000 - Energy Consumption: -4136/10000 - b: Light 1: 114934/10000 - Light 2: 832230/10000 - Energy Consumption: 971406/10000 - aKG: Light 1: 9182/10000 - Light 2: 3983/10000 - Energy Consumption: -4196/10000 - bKG: Light 1: 61392/10000 - Light 2: 756877/10000 - Energy Consumption: 961683/10000
+06:03.203	ID:1	Prediction: Light 1: 1714171/10000 - Light 2: 1473982/10000 - Energy Consumption: 206387/10000 - Time: 180
+06:06.883	ID:4	Sending message to aaaa::c30c:0:0:1
+06:06.891	ID:4	Data: [3, 252, -4685, -600, 13]
+06:07.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+06:07.126	ID:1	Light 1: 30000/10000 - Light 2: 2520000/10000 - Energy Consumption: 130000/10000
+06:28.344	ID:5	Sending message to aaaa::c30c:0:0:1
+06:28.353	ID:5	Data: [171, 164, -4685, -600, 41]
+06:28.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+06:28.626	ID:1	Light 1: 1710000/10000 - Light 2: 1640000/10000 - Energy Consumption: 410000/10000
+06:43.218	ID:1	Prediction: Light 1: 1897814/10000 - Light 2: 1553661/10000 - Energy Consumption: 122465/10000 - Time: 200
+06:51.137	ID:3	Sending message to aaaa::c30c:0:0:1
+06:51.146	ID:3	Data: [227, 220, -4685, -600, 41]
+06:51.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+06:51.375	ID:1	Light 1: 2270000/10000 - Light 2: 2200000/10000 - Energy Consumption: 410000/10000
+06:53.240	ID:2	Sending message to aaaa::c30c:0:0:1
+06:53.249	ID:2	Data: [110, 103, -4685, -600, 39]
+06:53.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+06:53.377	ID:1	Light 1: 1100000/10000 - Light 2: 1030000/10000 - Energy Consumption: 390000/10000
+06:53.544	ID:1	Model Updated - Average: Light 1: 1277500/10000 - Light 2: 1847500/10000 - Energy Consumption: 335000/10000 - Time: 2050000/10000 - a: Light 1: 3937/10000 - Light 2: 4408/10000 - Energy Consumption: -2943/10000 - b: Light 1: 575878/10000 - Light 2: 730576/10000 - Energy Consumption: 854153/10000 - aKG: Light 1: 4087/10000 - Light 2: 3949/10000 - Energy Consumption: -2952/10000 - bKG: Light 1: 610086/10000 - Light 2: 788125/10000 - Energy Consumption: 833605/10000
+07:19.524	ID:4	Sending message to aaaa::c30c:0:0:1
+07:19.533	ID:4	Data: [194, 187, -4685, -600, 49]
+07:19.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+07:19.625	ID:1	Light 1: 1940000/10000 - Light 2: 1870000/10000 - Energy Consumption: 490000/10000
+07:23.234	ID:1	Prediction: Light 1: 1509285/10000 - Light 2: 1656943/10000 - Energy Consumption: 184055/10000 - Time: 220
+07:32.505	ID:2	Sending message to aaaa::c30c:0:0:1
+07:32.514	ID:2	Data: [246, 239, -4685, -600, 19]
+07:32.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+07:32.625	ID:1	Light 1: 2460000/10000 - Light 2: 2390000/10000 - Energy Consumption: 190000/10000
+07:42.731	ID:3	Sending message to aaaa::c30c:0:0:1
+07:42.739	ID:3	Data: [92, 85, -4685, -600, 26]
+07:42.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+07:42.877	ID:1	Light 1: 920000/10000 - Light 2: 850000/10000 - Energy Consumption: 260000/10000
+08:03.109	ID:5	Sending message to aaaa::c30c:0:0:1
+08:03.117	ID:5	Data: [7, 0, -4685, -600, 45]
+08:03.250	ID:1	Prediction: Light 1: 1591031/10000 - Light 2: 1735926/10000 - Energy Consumption: 125005/10000 - Time: 240
+08:03.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+08:03.373	ID:1	Light 1: 70000/10000 - Light 2: 0/10000 - Energy Consumption: 450000/10000
+08:03.539	ID:1	Model Updated - Average: Light 1: 1347500/10000 - Light 2: 1277500/10000 - Energy Consumption: 347500/10000 - Time: 2400000/10000 - a: Light 1: 2895/10000 - Light 2: 2483/10000 - Energy Consumption: -1824/10000 - b: Light 1: 701014/10000 - Light 2: 934498/10000 - Energy Consumption: 721704/10000 - aKG: Light 1: 2631/10000 - Light 2: 2593/10000 - Energy Consumption: -1840/10000 - bKG: Light 1: 788073/10000 - Light 2: 934041/10000 - Energy Consumption: 700407/10000
+08:20.075	ID:3	Sending message to aaaa::c30c:0:0:1
+08:20.084	ID:3	Data: [187, 180, -4685, -600, 13]
+08:20.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+08:20.375	ID:1	Light 1: 1870000/10000 - Light 2: 1800000/10000 - Energy Consumption: 130000/10000
+08:28.563	ID:5	Sending message to aaaa::c30c:0:0:1
+08:28.572	ID:5	Data: [112, 105, -4685, -600, 28]
+08:28.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+08:28.874	ID:1	Light 1: 1120000/10000 - Light 2: 1050000/10000 - Energy Consumption: 280000/10000
+08:39.349	ID:2	Sending message to aaaa::c30c:0:0:1
+08:39.357	ID:2	Data: [22, 15, -4685, -600, 30]
+08:39.462	ID:4	Sending message to aaaa::c30c:0:0:1
+08:39.469	ID:4	Data: [12, 5, -4685, -600, 24]
+08:39.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+08:39.626	ID:1	Light 1: 220000/10000 - Light 2: 150000/10000 - Energy Consumption: 300000/10000
+08:40.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+08:40.126	ID:1	Light 1: 120000/10000 - Light 2: 50000/10000 - Energy Consumption: 240000/10000
+08:40.292	ID:1	Model Updated - Average: Light 1: 832500/10000 - Light 2: 762500/10000 - Energy Consumption: 237500/10000 - Time: 2590000/10000 - a: Light 1: 484/10000 - Light 2: -1080/10000 - Energy Consumption: -1738/10000 - b: Light 1: 1005197/10000 - Light 2: 1396629/10000 - Energy Consumption: 706667/10000 - aKG: Light 1: 510/10000 - Light 2: -515/10000 - Energy Consumption: -1558/10000 - bKG: Light 1: 1059977/10000 - Light 2: 1338609/10000 - Energy Consumption: 658580/10000
+08:43.265	ID:1	Prediction: Light 1: 1192612/10000 - Light 2: 1204658/10000 - Energy Consumption: 253489/10000 - Time: 260
+09:14.399	ID:4	Sending message to aaaa::c30c:0:0:1
+09:14.407	ID:4	Data: [52, 45, -4685, -600, 14]
+09:14.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+09:14.625	ID:1	Light 1: 520000/10000 - Light 2: 450000/10000 - Energy Consumption: 140000/10000
+09:19.891	ID:5	Sending message to aaaa::c30c:0:0:1
+09:19.899	ID:5	Data: [29, 22, -4685, -600, 25]
+09:20.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+09:20.125	ID:1	Light 1: 290000/10000 - Light 2: 220000/10000 - Energy Consumption: 250000/10000
+09:23.281	ID:1	Prediction: Light 1: 1202815/10000 - Light 2: 1194354/10000 - Energy Consumption: 222328/10000 - Time: 280
+09:33.122	ID:3	Sending message to aaaa::c30c:0:0:1
+09:33.130	ID:3	Data: [67, 60, -4685, -600, 30]
+09:33.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+09:33.375	ID:1	Light 1: 670000/10000 - Light 2: 600000/10000 - Energy Consumption: 300000/10000
+09:41.146	ID:2	Sending message to aaaa::c30c:0:0:1
+09:41.154	ID:2	Data: [32, 25, -4685, -600, 34]
+09:41.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+09:41.376	ID:1	Light 1: 320000/10000 - Light 2: 250000/10000 - Energy Consumption: 340000/10000
+09:41.544	ID:1	Model Updated - Average: Light 1: 450000/10000 - Light 2: 380000/10000 - Energy Consumption: 257500/10000 - Time: 2890000/10000 - a: Light 1: -2374/10000 - Light 2: -4063/10000 - Energy Consumption: -1588/10000 - b: Light 1: 1421989/10000 - Light 2: 1833829/10000 - Energy Consumption: 686716/10000 - aKG: Light 1: -2184/10000 - Light 2: -3494/10000 - Energy Consumption: -1392/10000 - bKG: Light 1: 1453354/10000 - Light 2: 1774702/10000 - Energy Consumption: 633710/10000
+10:03.297	ID:1	Prediction: Light 1: 798153/10000 - Light 2: 726428/10000 - Energy Consumption: 215906/10000 - Time: 300
+10:14.287	ID:2	Sending message to aaaa::c30c:0:0:1
+10:14.296	ID:2	Data: [245, 238, -4685, -600, 16]
+10:14.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+10:14.376	ID:1	Light 1: 2450000/10000 - Light 2: 2380000/10000 - Energy Consumption: 160000/10000
+10:38.727	ID:4	Sending message to aaaa::c30c:0:0:1
+10:38.736	ID:4	Data: [136, 129, -4685, -600, 37]
+10:38.850	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+10:38.874	ID:1	Light 1: 1360000/10000 - Light 2: 1290000/10000 - Energy Consumption: 370000/10000
+10:40.013	ID:3	Sending message to aaaa::c30c:0:0:1
+10:40.021	ID:3	Data: [195, 188, -4685, -600, 35]
+10:40.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+10:40.126	ID:1	Light 1: 1950000/10000 - Light 2: 1880000/10000 - Energy Consumption: 350000/10000
+10:43.311	ID:1	Prediction: Light 1: 754473/10000 - Light 2: 656543/10000 - Energy Consumption: 188052/10000 - Time: 320
+10:53.719	ID:5	Sending message to aaaa::c30c:0:0:1
+10:53.727	ID:5	Data: [38, 31, -4685, -600, 41]
+10:53.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+10:53.874	ID:1	Light 1: 380000/10000 - Light 2: 310000/10000 - Energy Consumption: 410000/10000
+10:54.042	ID:1	Model Updated - Average: Light 1: 1535000/10000 - Light 2: 1465000/10000 - Energy Consumption: 322500/10000 - Time: 3260000/10000 - a: Light 1: -91/10000 - Light 2: -1563/10000 - Energy Consumption: -1080/10000 - b: Light 1: 1081233/10000 - Light 2: 1459048/10000 - Energy Consumption: 606489/10000 - aKG: Light 1: -1008/10000 - Light 2: -2266/10000 - Energy Consumption: -1000/10000 - bKG: Light 1: 1282811/10000 - Light 2: 1595389/10000 - Energy Consumption: 570415/10000
+11:10.493	ID:4	Sending message to aaaa::c30c:0:0:1
+11:10.502	ID:4	Data: [250, 243, -4685, -600, 12]
+11:10.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+11:10.626	ID:1	Light 1: 2500000/10000 - Light 2: 2430000/10000 - Energy Consumption: 120000/10000
+11:12.834	ID:2	Sending message to aaaa::c30c:0:0:1
+11:12.842	ID:2	Data: [190, 183, -4685, -600, 20]
+11:13.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+11:13.126	ID:1	Light 1: 1900000/10000 - Light 2: 1830000/10000 - Energy Consumption: 200000/10000
+11:23.328	ID:1	Prediction: Light 1: 940085/10000 - Light 2: 824837/10000 - Energy Consumption: 230228/10000 - Time: 340
+11:32.984	ID:5	Sending message to aaaa::c30c:0:0:1
+11:32.993	ID:5	Data: [167, 160, -4685, -600, 14]
+11:33.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+11:33.124	ID:1	Light 1: 1670000/10000 - Light 2: 1600000/10000 - Energy Consumption: 140000/10000
+11:41.809	ID:3	Sending message to aaaa::c30c:0:0:1
+11:41.818	ID:3	Data: [205, 198, -4685, -600, 26]
+11:42.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+11:42.125	ID:1	Light 1: 2050000/10000 - Light 2: 1980000/10000 - Energy Consumption: 260000/10000
+11:42.291	ID:1	Model Updated - Average: Light 1: 2030000/10000 - Light 2: 1960000/10000 - Energy Consumption: 180000/10000 - Time: 3500000/10000 - a: Light 1: 3094/10000 - Light 2: 1840/10000 - Energy Consumption: -1114/10000 - b: Light 1: 524100/10000 - Light 2: 864042/10000 - Energy Consumption: 609005/10000 - aKG: Light 1: 1743/10000 - Light 2: 641/10000 - Energy Consumption: -952/10000 - bKG: Light 1: 803211/10000 - Light 2: 1087695/10000 - Energy Consumption: 558613/10000
+12:03.345	ID:1	Prediction: Light 1: 1431044/10000 - Light 2: 1318589/10000 - Energy Consumption: 215706/10000 - Time: 360
+12:12.946	ID:4	Sending message to aaaa::c30c:0:0:1
+12:12.954	ID:4	Data: [79, 72, -4685, -600, 18]
+12:13.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+12:13.125	ID:1	Light 1: 790000/10000 - Light 2: 720000/10000 - Energy Consumption: 180000/10000
+12:14.950	ID:3	Sending message to aaaa::c30c:0:0:1
+12:14.959	ID:3	Data: [141, 134, -4685, -600, 20]
+12:15.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+12:15.128	ID:1	Light 1: 1410000/10000 - Light 2: 1340000/10000 - Energy Consumption: 200000/10000
+12:28.224	ID:2	Sending message to aaaa::c30c:0:0:1
+12:28.232	ID:2	Data: [32, 25, -4685, -600, 28]
+12:28.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+12:28.377	ID:1	Light 1: 320000/10000 - Light 2: 250000/10000 - Energy Consumption: 280000/10000
+12:32.938	ID:5	Sending message to aaaa::c30c:0:0:1
+12:32.946	ID:5	Data: [247, 240, -4685, -600, 18]
+12:33.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+12:33.125	ID:1	Light 1: 2470000/10000 - Light 2: 2400000/10000 - Energy Consumption: 180000/10000
+12:33.291	ID:1	Model Updated - Average: Light 1: 1247500/10000 - Light 2: 1177500/10000 - Energy Consumption: 210000/10000 - Time: 3750000/10000 - a: Light 1: 2572/10000 - Light 2: 1495/10000 - Energy Consumption: -1116/10000 - b: Light 1: 601079/10000 - Light 2: 907563/10000 - Energy Consumption: 611014/10000 - aKG: Light 1: 2043/10000 - Light 2: 1123/10000 - Energy Consumption: -947/10000 - bKG: Light 1: 732396/10000 - Light 2: 981326/10000 - Energy Consumption: 557435/10000
+12:43.375	ID:1	Prediction: Light 1: 1509027/10000 - Light 2: 1408068/10000 - Energy Consumption: 197444/10000 - Time: 380
+13:11.044	ID:3	Sending message to aaaa::c30c:0:0:1
+13:11.053	ID:3	Data: [170, 163, -4685, -600, 20]
+13:11.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+13:11.127	ID:1	Light 1: 1700000/10000 - Light 2: 1630000/10000 - Energy Consumption: 200000/10000
+13:23.390	ID:1	Prediction: Light 1: 1549902/10000 - Light 2: 1430528/10000 - Energy Consumption: 178497/10000 - Time: 400
+13:25.819	ID:2	Sending message to aaaa::c30c:0:0:1
+13:25.828	ID:2	Data: [143, 136, -4685, -600, 33]
+13:26.100	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+13:26.124	ID:1	Light 1: 1430000/10000 - Light 2: 1360000/10000 - Energy Consumption: 330000/10000
+13:30.907	ID:5	Sending message to aaaa::c30c:0:0:1
+13:30.916	ID:5	Data: [221, 214, -4685, -600, 30]
+13:31.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+13:31.125	ID:1	Light 1: 2210000/10000 - Light 2: 2140000/10000 - Energy Consumption: 300000/10000
+13:35.633	ID:4	Sending message to aaaa::c30c:0:0:1
+13:35.642	ID:4	Data: [130, 123, -4685, -600, 45]
+13:35.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+13:35.875	ID:1	Light 1: 1300000/10000 - Light 2: 1230000/10000 - Energy Consumption: 450000/10000
+13:36.040	ID:1	Model Updated - Average: Light 1: 1660000/10000 - Light 2: 1590000/10000 - Energy Consumption: 320000/10000 - Time: 4070000/10000 - a: Light 1: 2258/10000 - Light 2: 1346/10000 - Energy Consumption: -740/10000 - b: Light 1: 674743/10000 - Light 2: 947732/10000 - Energy Consumption: 536362/10000 - aKG: Light 1: 1937/10000 - Light 2: 1170/10000 - Energy Consumption: -685/10000 - bKG: Light 1: 761835/10000 - Light 2: 978268/10000 - Energy Consumption: 504311/10000
+14:03.406	ID:1	Prediction: Light 1: 1575534/10000 - Light 2: 1469836/10000 - Energy Consumption: 216522/10000 - Time: 420
+14:07.990	ID:2	Sending message to aaaa::c30c:0:0:1
+14:07.999	ID:2	Data: [204, 197, -4685, -600, 21]
+14:08.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+14:08.127	ID:1	Light 1: 2040000/10000 - Light 2: 1970000/10000 - Energy Consumption: 210000/10000
+14:09.274	ID:4	Sending message to aaaa::c30c:0:0:1
+14:09.283	ID:4	Data: [182, 175, -4685, -600, 26]
+14:09.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+14:09.375	ID:1	Light 1: 1820000/10000 - Light 2: 1750000/10000 - Energy Consumption: 260000/10000
+14:13.497	ID:3	Sending message to aaaa::c30c:0:0:1
+14:13.504	ID:3	Data: [13, 6, -4685, -600, 18]
+14:13.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+14:13.625	ID:1	Light 1: 130000/10000 - Light 2: 60000/10000 - Energy Consumption: 180000/10000
+14:14.766	ID:5	Sending message to aaaa::c30c:0:0:1
+14:14.775	ID:5	Data: [159, 152, -4685, -600, 30]
+14:14.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+14:14.875	ID:1	Light 1: 1590000/10000 - Light 2: 1520000/10000 - Energy Consumption: 300000/10000
+14:15.042	ID:1	Model Updated - Average: Light 1: 1395000/10000 - Light 2: 1325000/10000 - Energy Consumption: 237500/10000 - Time: 4260000/10000 - a: Light 1: 1849/10000 - Light 2: 1056/10000 - Energy Consumption: -620/10000 - b: Light 1: 758066/10000 - Light 2: 1004992/10000 - Energy Consumption: 508024/10000 - aKG: Light 1: 1694/10000 - Light 2: 1040/10000 - Energy Consumption: -538/10000 - bKG: Light 1: 812803/10000 - Light 2: 1003663/10000 - Energy Consumption: 470172/10000
+14:43.423	ID:1	Prediction: Light 1: 1558525/10000 - Light 2: 1461648/10000 - Energy Consumption: 233441/10000 - Time: 440
+15:08.102	ID:4	Sending message to aaaa::c30c:0:0:1
+15:08.111	ID:4	Data: [107, 100, -4685, -600, 16]
+15:08.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+15:08.377	ID:1	Light 1: 1070000/10000 - Light 2: 1000000/10000 - Energy Consumption: 160000/10000
+15:23.437	ID:1	Prediction: Light 1: 1592421/10000 - Light 2: 1482466/10000 - Energy Consumption: 222681/10000 - Time: 460
+15:28.887	ID:3	Sending message to aaaa::c30c:0:0:1
+15:28.896	ID:3	Data: [132, 125, -4685, -600, 31]
+15:29.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+15:29.125	ID:1	Light 1: 1320000/10000 - Light 2: 1250000/10000 - Energy Consumption: 310000/10000
+15:39.094	ID:5	Sending message to aaaa::c30c:0:0:1
+15:39.103	ID:5	Data: [250, 243, -4685, -600, 23]
+15:39.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+15:39.376	ID:1	Light 1: 2500000/10000 - Light 2: 2430000/10000 - Energy Consumption: 230000/10000
+15:48.256	ID:2	Sending message to aaaa::c30c:0:0:1
+15:48.264	ID:2	Data: [145, 138, -4685, -600, 27]
+15:48.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+15:48.376	ID:1	Light 1: 1450000/10000 - Light 2: 1380000/10000 - Energy Consumption: 270000/10000
+15:48.541	ID:1	Model Updated - Average: Light 1: 1585000/10000 - Light 2: 1515000/10000 - Energy Consumption: 242500/10000 - Time: 4730000/10000 - a: Light 1: 1626/10000 - Light 2: 963/10000 - Energy Consumption: -572/10000 - b: Light 1: 812871/10000 - Light 2: 1029987/10000 - Energy Consumption: 497499/10000 - aKG: Light 1: 1479/10000 - Light 2: 933/10000 - Energy Consumption: -475/10000 - bKG: Light 1: 866938/10000 - Light 2: 1031938/10000 - Energy Consumption: 455147/10000
+16:03.453	ID:1	Prediction: Light 1: 1577044/10000 - Light 2: 1480024/10000 - Energy Consumption: 226834/10000 - Time: 480
+16:05.099	ID:2	Sending message to aaaa::c30c:0:0:1
+16:05.108	ID:2	Data: [105, 98, -4685, -600, 14]
+16:05.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+16:05.377	ID:1	Light 1: 1050000/10000 - Light 2: 980000/10000 - Energy Consumption: 140000/10000
+16:09.825	ID:3	Sending message to aaaa::c30c:0:0:1
+16:09.833	ID:3	Data: [95, 88, -4685, -600, 31]
+16:10.100	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+16:10.124	ID:1	Light 1: 950000/10000 - Light 2: 880000/10000 - Energy Consumption: 310000/10000
+16:13.313	ID:5	Sending message to aaaa::c30c:0:0:1
+16:13.320	ID:5	Data: [10, 3, -4685, -600, 33]
+16:13.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+16:13.626	ID:1	Light 1: 100000/10000 - Light 2: 30000/10000 - Energy Consumption: 330000/10000
+16:43.468	ID:1	Prediction: Light 1: 1606632/10000 - Light 2: 1498695/10000 - Energy Consumption: 217321/10000 - Time: 500
+16:53.321	ID:4	Sending message to aaaa::c30c:0:0:1
+16:53.330	ID:4	Data: [232, 225, -4685, -600, 48]
+16:53.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+16:53.627	ID:1	Light 1: 2320000/10000 - Light 2: 2250000/10000 - Energy Consumption: 480000/10000
+16:53.792	ID:1	Model Updated - Average: Light 1: 1105000/10000 - Light 2: 1035000/10000 - Energy Consumption: 315000/10000 - Time: 5060000/10000 - a: Light 1: 729/10000 - Light 2: 170/10000 - Energy Consumption: -377/10000 - b: Light 1: 1027498/10000 - Light 2: 1218668/10000 - Energy Consumption: 450394/10000 - aKG: Light 1: 781/10000 - Light 2: 324/10000 - Energy Consumption: -331/10000 - bKG: Light 1: 1035776/10000 - Light 2: 1178259/10000 - Energy Consumption: 419590/10000
+17:23.484	ID:1	Prediction: Light 1: 1442173/10000 - Light 2: 1346954/10000 - Energy Consumption: 247447/10000 - Time: 520
+17:29.693	ID:2	Sending message to aaaa::c30c:0:0:1
+17:29.702	ID:2	Data: [137, 130, -4685, -600, 41]
+17:29.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+17:29.878	ID:1	Light 1: 1370000/10000 - Light 2: 1300000/10000 - Energy Consumption: 410000/10000
+17:46.281	ID:5	Sending message to aaaa::c30c:0:0:1
+17:46.289	ID:5	Data: [61, 54, -4685, -600, 44]
+17:46.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+17:46.376	ID:1	Light 1: 610000/10000 - Light 2: 540000/10000 - Energy Consumption: 440000/10000
+17:48.919	ID:3	Sending message to aaaa::c30c:0:0:1
+17:48.927	ID:3	Data: [69, 62, -4685, -600, 46]
+17:49.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+17:49.124	ID:1	Light 1: 690000/10000 - Light 2: 620000/10000 - Energy Consumption: 460000/10000
+17:57.291	ID:4	Sending message to aaaa::c30c:0:0:1
+17:57.300	ID:4	Data: [157, 150, -4685, -600, 37]
+17:57.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+17:57.377	ID:1	Light 1: 1570000/10000 - Light 2: 1500000/10000 - Energy Consumption: 370000/10000
+17:57.542	ID:1	Model Updated - Average: Light 1: 1060000/10000 - Light 2: 990000/10000 - Energy Consumption: 420000/10000 - Time: 5370000/10000 - a: Light 1: -45/10000 - Light 2: -528/10000 - Energy Consumption: -69/10000 - b: Light 1: 1232305/10000 - Light 2: 1403524/10000 - Energy Consumption: 370844/10000 - aKG: Light 1: 59/10000 - Light 2: -327/10000 - Energy Consumption: -85/10000 - bKG: Light 1: 1226909/10000 - Light 2: 1350593/10000 - Energy Consumption: 355633/10000
+18:03.500	ID:1	Prediction: Light 1: 1259257/10000 - Light 2: 1173636/10000 - Energy Consumption: 309507/10000 - Time: 541
+18:05.762	ID:3	Sending message to aaaa::c30c:0:0:1
+18:05.770	ID:3	Data: [29, 22, -4685, -600, 11]
+18:05.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+18:05.874	ID:1	Light 1: 290000/10000 - Light 2: 220000/10000 - Energy Consumption: 110000/10000
+18:36.000	ID:5	Sending message to aaaa::c30c:0:0:1
+18:36.009	ID:5	Data: [244, 237, -4685, -600, 14]
+18:36.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+18:36.127	ID:1	Light 1: 2440000/10000 - Light 2: 2370000/10000 - Energy Consumption: 140000/10000
+18:43.515	ID:1	Prediction: Light 1: 1260515/10000 - Light 2: 1166754/10000 - Energy Consumption: 307714/10000 - Time: 561
+18:48.037	ID:2	Sending message to aaaa::c30c:0:0:1
+18:48.045	ID:2	Data: [32, 25, -4685, -600, 36]
+18:48.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+18:48.125	ID:1	Light 1: 320000/10000 - Light 2: 250000/10000 - Energy Consumption: 360000/10000
+18:49.477	ID:4	Sending message to aaaa::c30c:0:0:1
+18:49.485	ID:4	Data: [39, 32, -4685, -600, 22]
+18:49.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+18:49.626	ID:1	Light 1: 390000/10000 - Light 2: 320000/10000 - Energy Consumption: 220000/10000
+18:49.792	ID:1	Model Updated - Average: Light 1: 860000/10000 - Light 2: 790000/10000 - Energy Consumption: 207500/10000 - Time: 5640000/10000 - a: Light 1: -642/10000 - Light 2: -1068/10000 - Energy Consumption: -183/10000 - b: Light 1: 1396019/10000 - Light 2: 1551605/10000 - Energy Consumption: 398745/10000 - aKG: Light 1: -510/10000 - Light 2: -846/10000 - Energy Consumption: -118/10000 - bKG: Light 1: 1384056/10000 - Light 2: 1492899/10000 - Energy Consumption: 362117/10000
+19:09.641	ID:5	Sending message to aaaa::c30c:0:0:1
+19:09.649	ID:5	Data: [40, 33, -4685, -600, 11]
+19:09.852	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+19:09.875	ID:1	Light 1: 400000/10000 - Light 2: 330000/10000 - Energy Consumption: 110000/10000
+19:22.243	ID:4	Sending message to aaaa::c30c:0:0:1
+19:22.252	ID:4	Data: [108, 101, -4685, -600, 12]
+19:22.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+19:22.376	ID:1	Light 1: 1080000/10000 - Light 2: 1010000/10000 - Energy Consumption: 120000/10000
+19:23.531	ID:1	Prediction: Light 1: 1087202/10000 - Light 2: 1000897/10000 - Energy Consumption: 293494/10000 - Time: 581
+19:53.584	ID:2	Sending message to aaaa::c30c:0:0:1
+19:53.592	ID:2	Data: [153, 146, -4685, -600, 16]
+19:53.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+19:53.876	ID:1	Light 1: 1530000/10000 - Light 2: 1460000/10000 - Energy Consumption: 160000/10000
+19:57.842	ID:3	Sending message to aaaa::c30c:0:0:1
+19:57.850	ID:3	Data: [91, 84, -4685, -600, 42]
+19:58.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+19:58.125	ID:1	Light 1: 910000/10000 - Light 2: 840000/10000 - Energy Consumption: 420000/10000
+19:58.292	ID:1	Model Updated - Average: Light 1: 980000/10000 - Light 2: 910000/10000 - Energy Consumption: 202500/10000 - Time: 5980000/10000 - a: Light 1: -799/10000 - Light 2: -1176/10000 - Energy Consumption: -357/10000 - b: Light 1: 1444953/10000 - Light 2: 1586407/10000 - Energy Consumption: 450181/10000 - aKG: Light 1: -748/10000 - Light 2: -1043/10000 - Energy Consumption: -250/10000 - bKG: Light 1: 1455050/10000 - Light 2: 1551443/10000 - Energy Consumption: 401037/10000
+20:03.546	ID:1	Prediction: Light 1: 1005113/10000 - Light 2: 924334/10000 - Energy Consumption: 250194/10000 - Time: 601
+20:29.974	ID:2	Sending message to aaaa::c30c:0:0:1
+20:29.983	ID:2	Data: [133, 126, -4685, -600, 59]
+20:30.100	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+20:30.125	ID:1	Light 1: 1330000/10000 - Light 2: 1260000/10000 - Energy Consumption: 590000/10000
+20:43.561	ID:1	Prediction: Light 1: 990140/10000 - Light 2: 903465/10000 - Energy Consumption: 245175/10000 - Time: 621
+20:48.700	ID:3	Sending message to aaaa::c30c:0:0:1
+20:48.709	ID:3	Data: [198, 191, -4685, -600, 38]
+20:48.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+20:48.878	ID:1	Light 1: 1980000/10000 - Light 2: 1910000/10000 - Energy Consumption: 380000/10000
+20:53.688	ID:5	Sending message to aaaa::c30c:0:0:1
+20:53.696	ID:4	Sending message to aaaa::c30c:0:0:1
+20:53.696	ID:5	Data: [170, 163, -4685, -600, 52]
+20:53.704	ID:4	Data: [49, 42, -4685, -600, 32]
+20:53.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+20:53.875	ID:1	Light 1: 1700000/10000 - Light 2: 1630000/10000 - Energy Consumption: 520000/10000
+20:54.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+20:54.126	ID:1	Light 1: 490000/10000 - Light 2: 420000/10000 - Energy Consumption: 320000/10000
+20:54.292	ID:1	Model Updated - Average: Light 1: 1375000/10000 - Light 2: 1305000/10000 - Energy Consumption: 452500/10000 - Time: 6260000/10000 - a: Light 1: -251/10000 - Light 2: -589/10000 - Energy Consumption: -95/10000 - b: Light 1: 1281819/10000 - Light 2: 1411073/10000 - Energy Consumption: 373255/10000 - aKG: Light 1: -419/10000 - Light 2: -684/10000 - Energy Consumption: -103/10000 - bKG: Light 1: 1356749/10000 - Light 2: 1443329/10000 - Energy Consumption: 357751/10000
+21:23.579	ID:1	Prediction: Light 1: 1087578/10000 - Light 2: 1004805/10000 - Energy Consumption: 291178/10000 - Time: 641
+21:30.172	ID:5	Sending message to aaaa::c30c:0:0:1
+21:30.180	ID:5	Data: [72, 65, -4685, -600, 15]
+21:30.637	ID:3	Sending message to aaaa::c30c:0:0:1
+21:30.646	ID:3	Data: [130, 123, -4685, -600, 26]
+21:30.852	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+21:30.876	ID:1	Light 1: 1300000/10000 - Light 2: 1230000/10000 - Energy Consumption: 260000/10000
+21:38.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+21:38.874	ID:1	Light 1: 720000/10000 - Light 2: 650000/10000 - Energy Consumption: 150000/10000
+21:40.383	ID:4	Sending message to aaaa::c30c:0:0:1
+21:40.391	ID:4	Data: [68, 61, -4685, -600, 41]
+21:40.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+21:40.626	ID:1	Light 1: 680000/10000 - Light 2: 610000/10000 - Energy Consumption: 410000/10000
+21:57.568	ID:2	Sending message to aaaa::c30c:0:0:1
+21:57.576	ID:2	Data: [23, 16, -4685, -600, 24]
+21:57.852	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+21:57.875	ID:1	Light 1: 230000/10000 - Light 2: 160000/10000 - Energy Consumption: 240000/10000
+21:58.040	ID:1	Model Updated - Average: Light 1: 732500/10000 - Light 2: 662500/10000 - Energy Consumption: 265000/10000 - Time: 6580000/10000 - a: Light 1: -560/10000 - Light 2: -863/10000 - Energy Consumption: -67/10000 - b: Light 1: 1372151/10000 - Light 2: 1490461/10000 - Energy Consumption: 361143/10000 - aKG: Light 1: -573/10000 - Light 2: -808/10000 - Energy Consumption: -44/10000 - bKG: Light 1: 1399614/10000 - Light 2: 1476579/10000 - Energy Consumption: 336665/10000
+22:03.609	ID:1	Prediction: Light 1: 1020789/10000 - Light 2: 942179/10000 - Energy Consumption: 307489/10000 - Time: 661
+22:25.216	ID:3	Sending message to aaaa::c30c:0:0:1
+22:25.224	ID:3	Data: [70, 63, -4685, -600, 35]
+22:25.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+22:25.375	ID:1	Light 1: 700000/10000 - Light 2: 630000/10000 - Energy Consumption: 350000/10000
+22:25.797	ID:5	Sending message to aaaa::c30c:0:0:1
+22:25.805	ID:5	Data: [49, 42, -4685, -600, 32]
+22:25.851	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+22:25.874	ID:1	Light 1: 490000/10000 - Light 2: 420000/10000 - Energy Consumption: 320000/10000
+22:40.271	ID:2	Sending message to aaaa::c30c:0:0:1
+22:40.279	ID:2	Data: [5, 254, -4685, -600, 22]
+22:40.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+22:40.376	ID:1	Light 1: 50000/10000 - Light 2: 2540000/10000 - Energy Consumption: 220000/10000
+22:43.624	ID:1	Prediction: Light 1: 1009327/10000 - Light 2: 926010/10000 - Energy Consumption: 306606/10000 - Time: 681
+22:44.119	ID:4	Sending message to aaaa::c30c:0:0:1
+22:44.127	ID:4	Data: [127, 120, -4685, -600, 23]
+22:44.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+22:44.377	ID:1	Light 1: 1270000/10000 - Light 2: 1200000/10000 - Energy Consumption: 230000/10000
+22:44.544	ID:1	Model Updated - Average: Light 1: 627500/10000 - Light 2: 1197500/10000 - Energy Consumption: 280000/10000 - Time: 6810000/10000 - a: Light 1: -1121/10000 - Light 2: -681/10000 - Energy Consumption: -136/10000 - b: Light 1: 1561968/10000 - Light 2: 1437084/10000 - Energy Consumption: 384901/10000 - aKG: Light 1: -1004/10000 - Light 2: -716/10000 - Energy Consumption: -77/10000 - bKG: Light 1: 1544178/10000 - Light 2: 1449473/10000 - Energy Consumption: 348134/10000
+23:23.639	ID:1	Prediction: Light 1: 839967/10000 - Light 2: 947259/10000 - Energy Consumption: 293509/10000 - Time: 701
+23:29.500	ID:5	Sending message to aaaa::c30c:0:0:1
+23:29.508	ID:5	Data: [19, 12, -4685, -600, 17]
+23:29.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+23:29.625	ID:1	Light 1: 190000/10000 - Light 2: 120000/10000 - Energy Consumption: 170000/10000
+23:38.071	ID:4	Sending message to aaaa::c30c:0:0:1
+23:38.080	ID:4	Data: [231, 224, -4685, -600, 22]
+23:38.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+23:38.376	ID:1	Light 1: 2310000/10000 - Light 2: 2240000/10000 - Energy Consumption: 220000/10000
+23:44.006	ID:2	Sending message to aaaa::c30c:0:0:1
+23:44.014	ID:2	Data: [57, 50, -4685, -600, 45]
+23:44.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+23:44.125	ID:1	Light 1: 570000/10000 - Light 2: 500000/10000 - Energy Consumption: 450000/10000
+23:58.231	ID:3	Sending message to aaaa::c30c:0:0:1
+23:58.240	ID:3	Data: [189, 182, -4685, -600, 61]
+23:58.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+23:58.375	ID:1	Light 1: 1890000/10000 - Light 2: 1820000/10000 - Energy Consumption: 610000/10000
+23:58.540	ID:1	Model Updated - Average: Light 1: 1240000/10000 - Light 2: 1170000/10000 - Energy Consumption: 362500/10000 - Time: 7180000/10000 - a: Light 1: -687/10000 - Light 2: -320/10000 - Energy Consumption: -60/10000 - b: Light 1: 1416733/10000 - Light 2: 1308758/10000 - Energy Consumption: 359213/10000 - aKG: Light 1: -791/10000 - Light 2: -400/10000 - Energy Consumption: -30/10000 - bKG: Light 1: 1472909/10000 - Light 2: 1336815/10000 - Energy Consumption: 331835/10000
+24:03.656	ID:1	Prediction: Light 1: 902211/10000 - Light 2: 1047909/10000 - Energy Consumption: 310073/10000 - Time: 721
+24:29.141	ID:5	Sending message to aaaa::c30c:0:0:1
+24:29.149	ID:5	Data: [62, 55, -4685, -600, 36]
+24:29.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+24:29.375	ID:1	Light 1: 620000/10000 - Light 2: 550000/10000 - Energy Consumption: 360000/10000
+24:34.961	ID:4	Sending message to aaaa::c30c:0:0:1
+24:34.970	ID:4	Data: [83, 76, -4685, -600, 45]
+24:35.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+24:35.624	ID:1	Light 1: 830000/10000 - Light 2: 760000/10000 - Energy Consumption: 450000/10000
+24:37.959	ID:2	Sending message to aaaa::c30c:0:0:1
+24:37.967	ID:2	Data: [154, 147, -4685, -600, 25]
+24:38.101	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+24:38.126	ID:1	Light 1: 1540000/10000 - Light 2: 1470000/10000 - Energy Consumption: 250000/10000
+24:43.671	ID:1	Prediction: Light 1: 886380/10000 - Light 2: 1039895/10000 - Energy Consumption: 309470/10000 - Time: 741
+24:44.670	ID:3	Sending message to aaaa::c30c:0:0:1
+24:44.679	ID:3	Data: [240, 233, -4685, -600, 16]
+24:44.854	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+24:44.878	ID:1	Light 1: 2400000/10000 - Light 2: 2330000/10000 - Energy Consumption: 160000/10000
+24:45.042	ID:1	Model Updated - Average: Light 1: 1347500/10000 - Light 2: 1277500/10000 - Energy Consumption: 305000/10000 - Time: 7410000/10000 - a: Light 1: -72/10000 - Light 2: -61/10000 - Energy Consumption: -45/10000 - b: Light 1: 1190621/10000 - Light 2: 1214425/10000 - Energy Consumption: 352863/10000 - aKG: Light 1: -295/10000 - Light 2: -147/10000 - Energy Consumption: -9/10000 - bKG: Light 1: 1290192/10000 - Light 2: 1243653/10000 - Energy Consumption: 323513/10000
+25:04.227	ID:4	Sending message to aaaa::c30c:0:0:1
+25:04.236	ID:4	Data: [213, 206, -4685, -600, 26]
+25:04.350	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+25:04.374	ID:1	Light 1: 2130000/10000 - Light 2: 2060000/10000 - Energy Consumption: 260000/10000
+25:12.236	ID:5	Sending message to aaaa::c30c:0:0:1
+25:12.244	ID:5	Data: [196, 189, -4685, -600, 32]
+25:12.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+25:12.376	ID:1	Light 1: 1960000/10000 - Light 2: 1890000/10000 - Energy Consumption: 320000/10000
+25:23.687	ID:1	Prediction: Light 1: 1065276/10000 - Light 2: 1131467/10000 - Energy Consumption: 316663/10000 - Time: 761
+25:35.512	ID:3	Sending message to aaaa::c30c:0:0:1
+25:35.521	ID:3	Data: [104, 97, -4685, -600, 20]
+25:35.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+25:35.625	ID:1	Light 1: 1040000/10000 - Light 2: 970000/10000 - Energy Consumption: 200000/10000
+25:35.928	ID:2	Sending message to aaaa::c30c:0:0:1
+25:35.937	ID:2	Data: [121, 114, -4685, -600, 30]
+25:36.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+25:36.626	ID:1	Light 1: 1210000/10000 - Light 2: 1140000/10000 - Energy Consumption: 300000/10000
+25:36.791	ID:1	Model Updated - Average: Light 1: 1585000/10000 - Light 2: 1515000/10000 - Energy Consumption: 270000/10000 - Time: 7670000/10000 - a: Light 1: 475/10000 - Light 2: 335/10000 - Energy Consumption: -99/10000 - b: Light 1: 982838/10000 - Light 2: 1064669/10000 - Energy Consumption: 373224/10000 - aKG: Light 1: 205/10000 - Light 2: 189/10000 - Energy Consumption: -44/10000 - bKG: Light 1: 1099259/10000 - Light 2: 1115973/10000 - Energy Consumption: 336927/10000
+26:03.703	ID:1	Prediction: Light 1: 1259871/10000 - Light 2: 1263986/10000 - Energy Consumption: 301922/10000 - Time: 781
+26:04.115	ID:2	Sending message to aaaa::c30c:0:0:1
+26:04.124	ID:2	Data: [150, 143, -4685, -600, 27]
+26:04.352	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+26:04.376	ID:1	Light 1: 1500000/10000 - Light 2: 1430000/10000 - Energy Consumption: 270000/10000
+26:36.592	ID:3	Sending message to aaaa::c30c:0:0:1
+26:36.601	ID:3	Data: [111, 104, -4685, -600, 18]
+26:36.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+26:36.878	ID:1	Light 1: 1110000/10000 - Light 2: 1040000/10000 - Energy Consumption: 180000/10000
+26:39.157	ID:5	Sending message to aaaa::c30c:0:0:1
+26:39.166	ID:5	Data: [224, 217, -4685, -600, 69]
+26:39.351	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+26:39.375	ID:1	Light 1: 2240000/10000 - Light 2: 2170000/10000 - Energy Consumption: 690000/10000
+26:41.993	ID:4	Sending message to aaaa::c30c:0:0:1
+26:42.002	ID:4	Data: [163, 156, -4685, -600, 37]
+26:42.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+26:42.127	ID:1	Light 1: 1630000/10000 - Light 2: 1560000/10000 - Energy Consumption: 370000/10000
+26:42.290	ID:1	Model Updated - Average: Light 1: 1620000/10000 - Light 2: 1550000/10000 - Energy Consumption: 377500/10000 - Time: 8000000/10000 - a: Light 1: 833/10000 - Light 2: 634/10000 - Energy Consumption: -31/10000 - b: Light 1: 839667/10000 - Light 2: 945115/10000 - Energy Consumption: 347506/10000 - aKG: Light 1: 591/10000 - Light 2: 485/10000 - Energy Consumption: -9/10000 - bKG: Light 1: 945897/10000 - Light 2: 998292/10000 - Energy Consumption: 323421/10000
+26:43.718	ID:1	Prediction: Light 1: 1419599/10000 - Light 2: 1387471/10000 - Energy Consumption: 316190/10000 - Time: 801
+27:06.450	ID:3	Sending message to aaaa::c30c:0:0:1
+27:06.459	ID:3	Data: [237, 230, -4685, -600, 38]
+27:06.603	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+27:06.627	ID:1	Light 1: 2370000/10000 - Light 2: 2300000/10000 - Energy Consumption: 380000/10000
+27:09.672	ID:5	Sending message to aaaa::c30c:0:0:1
+27:09.681	ID:5	Data: [204, 197, -4685, -600, 15]
+27:09.849	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+27:09.873	ID:1	Light 1: 2040000/10000 - Light 2: 1970000/10000 - Energy Consumption: 150000/10000
+27:23.735	ID:1	Prediction: Light 1: 1431427/10000 - Light 2: 1397189/10000 - Energy Consumption: 316009/10000 - Time: 821
+27:30.446	ID:4	Sending message to aaaa::c30c:0:0:1
+27:30.455	ID:4	Data: [173, 166, -4685, -600, 24]
+27:30.602	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+27:30.627	ID:1	Light 1: 1730000/10000 - Light 2: 1660000/10000 - Energy Consumption: 240000/10000
+27:41.880	ID:2	Sending message to aaaa::c30c:0:0:1
+27:41.889	ID:2	Data: [93, 86, -4685, -600, 32]
+27:42.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+27:42.127	ID:1	Light 1: 930000/10000 - Light 2: 860000/10000 - Energy Consumption: 320000/10000
+27:42.290	ID:1	Model Updated - Average: Light 1: 1767500/10000 - Light 2: 1697500/10000 - Energy Consumption: 272500/10000 - Time: 8300000/10000 - a: Light 1: 1101/10000 - Light 2: 886/10000 - Energy Consumption: -50/10000 - b: Light 1: 729738/10000 - Light 2: 842212/10000 - Energy Consumption: 354118/10000 - aKG: Light 1: 880/10000 - Light 2: 734/10000 - Energy Consumption: -14/10000 - bKG: Light 1: 828163/10000 - Light 2: 897202/10000 - Energy Consumption: 324836/10000
+28:03.750	ID:1	Prediction: Light 1: 1568265/10000 - Light 2: 1514569/10000 - Energy Consumption: 312784/10000 - Time: 841
+28:04.778	ID:3	Sending message to aaaa::c30c:0:0:1
+28:04.786	ID:3	Data: [46, 39, -4685, -600, 20]
+28:04.853	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+28:04.877	ID:1	Light 1: 460000/10000 - Light 2: 390000/10000 - Energy Consumption: 200000/10000
+28:07.836	ID:4	Sending message to aaaa::c30c:0:0:1
+28:07.845	ID:4	Data: [101, 94, -4685, -600, 14]
+28:08.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+28:08.377	ID:1	Light 1: 1010000/10000 - Light 2: 940000/10000 - Energy Consumption: 140000/10000
+28:27.875	ID:5	Sending message to aaaa::c30c:0:0:1
+28:27.883	ID:5	Data: [88, 81, -4685, -600, 26]
+28:28.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+28:28.125	ID:1	Light 1: 880000/10000 - Light 2: 810000/10000 - Energy Consumption: 260000/10000
+28:30.334	ID:2	Sending message to aaaa::c30c:0:0:1
+28:30.342	ID:2	Data: [103, 96, -4685, -600, 28]
+28:30.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+28:30.624	ID:1	Light 1: 1030000/10000 - Light 2: 960000/10000 - Energy Consumption: 280000/10000
+28:30.789	ID:1	Model Updated - Average: Light 1: 845000/10000 - Light 2: 775000/10000 - Energy Consumption: 220000/10000 - Time: 8540000/10000 - a: Light 1: 432/10000 - Light 2: 216/10000 - Energy Consumption: -147/10000 - b: Light 1: 1006179/10000 - Light 2: 1118647/10000 - Energy Consumption: 395157/10000 - aKG: Light 1: 438/10000 - Light 2: 275/10000 - Energy Consumption: -87/10000 - bKG: Light 1: 1011001/10000 - Light 2: 1087058/10000 - Energy Consumption: 355613/10000
+28:43.765	ID:1	Prediction: Light 1: 1388258/10000 - Light 2: 1324146/10000 - Energy Consumption: 280519/10000 - Time: 861
+29:23.344	ID:5	Sending message to aaaa::c30c:0:0:1
+29:23.352	ID:5	Data: [50, 43, -4685, -600, 31]
+29:23.601	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:5 on port 80872658 from port 299761684 with length 310116352
+29:23.624	ID:1	Light 1: 500000/10000 - Light 2: 430000/10000 - Energy Consumption: 310000/10000
+29:23.781	ID:1	Prediction: Light 1: 1397021/10000 - Light 2: 1329653/10000 - Energy Consumption: 278774/10000 - Time: 881
+29:29.133	ID:4	Sending message to aaaa::c30c:0:0:1
+29:29.141	ID:4	Data: [28, 21, -4685, -600, 25]
+29:29.353	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:4 on port 80872658 from port 299761684 with length 310116352
+29:29.376	ID:1	Light 1: 280000/10000 - Light 2: 210000/10000 - Energy Consumption: 250000/10000
+29:30.997	ID:3	Sending message to aaaa::c30c:0:0:1
+29:31.005	ID:3	Data: [100, 93, -4685, -600, 24]
+29:31.103	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:3 on port 80872658 from port 299761684 with length 310116352
+29:31.127	ID:1	Light 1: 1000000/10000 - Light 2: 930000/10000 - Energy Consumption: 240000/10000
+29:55.302	ID:2	Sending message to aaaa::c30c:0:0:1
+29:55.310	ID:2	Data: [16, 9, -4685, -600, 52]
+29:56.102	ID:1	RECEIVER: Data received from aaaa::c30c:0:0:2 on port 80872658 from port 299761684 with length 310116352
+29:56.125	ID:1	Light 1: 160000/10000 - Light 2: 90000/10000 - Energy Consumption: 520000/10000
+29:56.290	ID:1	Model Updated - Average: Light 1: 485000/10000 - Light 2: 415000/10000 - Energy Consumption: 330000/10000 - Time: 8970000/10000 - a: Light 1: -568/10000 - Light 2: -774/10000 - Energy Consumption: -110/10000 - b: Light 1: 1447371/10000 - Light 2: 1555417/10000 - Energy Consumption: 379702/10000 - aKG: Light 1: -413/10000 - Light 2: -580/10000 - Energy Consumption: -79/10000 - bKG: Light 1: 1386433/10000 - Light 2: 1464190/10000 - Energy Consumption: 352761/10000
