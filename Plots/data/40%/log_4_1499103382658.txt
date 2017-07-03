@@ -1,0 +1,62 @@
+3020889 Rime started with address 193.12.0.0.0.0.0.4
+3034201 MAC c1:0c:00:00:00:00:00:04 Contiki 3.0 started. Node id is set to 4.
+3044237 CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+3059982 Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0004
+3063714 Starting 'Sender process'
+3070878 IPv6 addresses: aaaa::c30c:0:0:4
+3074208 fe80::c30c:0:0:4
+99440075 Error Sending Data: Time: 48
+171408810 Error Sending Data: Time: 84
+188096272 Error Sending Data: Time: 93
+288368208 Sending message to aaaa::c30c:0:0:1
+288376714 Data: [0, 100, -4685, -600, 479]
+349477726 Sending message to aaaa::c30c:0:0:1
+349486642 Data: [129, 122, -4685, -600, 77]
+389133828 Sending message to aaaa::c30c:0:0:1
+389143159 Data: [220, 213, -4685, -600, 252]
+430164972 Sending message to aaaa::c30c:0:0:1
+430173486 Data: [105, 98, -4685, -600, 72]
+506461933 Sending message to aaaa::c30c:0:0:1
+506470436 Data: [1, 250, -4685, -600, 101]
+592931451 Sending message to aaaa::c30c:0:0:1
+592939953 Data: [45, 38, -4685, -600, 118]
+651102540 Sending message to aaaa::c30c:0:0:1
+651110629 Data: [42, 35, -4685, -600, 90]
+705086901 Sending message to aaaa::c30c:0:0:1
+705095820 Data: [235, 228, -4685, -600, 34]
+772680684 Sending message to aaaa::c30c:0:0:1
+772688774 Data: [57, 50, -4685, -600, 39]
+799118146 Sending message to aaaa::c30c:0:0:1
+799127060 Data: [113, 106, -4685, -600, 41]
+881758787 Sending message to aaaa::c30c:0:0:1
+881766876 Data: [61, 54, -4685, -600, 86]
+961977519 Sending message to aaaa::c30c:0:0:1
+961986855 Data: [157, 150, -4685, -600, 293]
+982946308 Sending message to aaaa::c30c:0:0:1
+982955224 Data: [130, 123, -4685, -600, 36]
+1066149409 Sending message to aaaa::c30c:0:0:1
+1066157911 Data: [52, 45, -4685, -600, 140]
+1126383783 Sending message to aaaa::c30c:0:0:1
+1126392699 Data: [126, 119, -4685, -600, 66]
+1194041188 Sending message to aaaa::c30c:0:0:1
+1194049200 Data: [69, 62, -4685, -600, 84]
+1225415047 Sending message to aaaa::c30c:0:0:1
+1225422249 Data: [7, 0, -4685, -600, 67]
+1294352518 Sending message to aaaa::c30c:0:0:1
+1294361860 Data: [155, 148, -4685, -600, 180]
+1327727529 Sending message to aaaa::c30c:0:0:1
+1327736455 Data: [252, 245, -4685, -600, 61]
+1409383808 Sending message to aaaa::c30c:0:0:1
+1409392311 Data: [28, 21, -4685, -600, 295]
+1488185525 Sending message to aaaa::c30c:0:0:1
+1488193950 Data: [61, 54, -4685, -600, 104]
+1546744004 Sending message to aaaa::c30c:0:0:1
+1546753333 Data: [222, 215, -4685, -600, 181]
+1578180639 Sending message to aaaa::c30c:0:0:1
+1578189557 Data: [228, 221, -4685, -600, 33]
+1648946283 Sending message to aaaa::c30c:0:0:1
+1648955614 Data: [225, 218, -4685, -600, 145]
+1700102544 Sending message to aaaa::c30c:0:0:1
+1700110647 Data: [74, 67, -4685, -600, 66]
+1790086897 Sending message to aaaa::c30c:0:0:1
+1790095398 Data: [36, 29, -4685, -600, 201]

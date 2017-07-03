@@ -1,0 +1,8 @@
+3056233 Rime started with address 193.12.0.0.0.0.0.1
+3069545 MAC c1:0c:00:00:00:00:00:01 Contiki 3.0 started. Node id is set to 1.
+3079581 CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+3095326 Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0001
+3099342 Starting 'Receiver process'
+3106505 IPv6 addresses: aaaa::c30c:0:0:1
+3109835 fe80::c30c:0:0:1
+3114628 created a new RPL dag

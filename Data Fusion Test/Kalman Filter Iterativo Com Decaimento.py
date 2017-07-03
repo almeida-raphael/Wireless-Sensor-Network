@@ -45,7 +45,7 @@ def linear_coef_step(a, X_sum, Y_sum, data_size):
 count = 100
 end = 100
 time = np.linspace(0, end, count)
-data = gen_data_osc(count)
+data = gen_data(count)
 
 delta = end / count
 

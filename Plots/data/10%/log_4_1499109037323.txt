@@ -1,0 +1,36 @@
+3020889 Rime started with address 193.12.0.0.0.0.0.4
+3034201 MAC c1:0c:00:00:00:00:00:04 Contiki 3.0 started. Node id is set to 4.
+3044237 CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+3059982 Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0004
+3063714 Starting 'Sender process'
+3070878 IPv6 addresses: aaaa::c30c:0:0:4
+3074208 fe80::c30c:0:0:4
+71065005 Error Sending Data: Time: 34
+159955596 Error Sending Data: Time: 79
+217034132 Error Sending Data: Time: 107
+258549822 Error Sending Data: Time: 128
+322893532 Error Sending Data: Time: 160
+381221658 Error Sending Data: Time: 189
+426987740 Error Sending Data: Time: 212
+519440448 Error Sending Data: Time: 258
+588409161 Error Sending Data: Time: 293
+650424783 Error Sending Data: Time: 324
+682127909 Error Sending Data: Time: 340
+765768529 Error Sending Data: Time: 382
+832862258 Error Sending Data: Time: 415
+879815385 Error Sending Data: Time: 439
+909706009 Error Sending Data: Time: 454
+983784152 Error Sending Data: Time: 491
+1048502885 Error Sending Data: Time: 523
+1104643512 Error Sending Data: Time: 551
+1167971636 Error Sending Data: Time: 583
+1262737330 Error Sending Data: Time: 630
+1310581035 Error Sending Data: Time: 654
+1371159134 Error Sending Data: Time: 684
+1422174762 Error Sending Data: Time: 710
+1446877950 Error Sending Data: Time: 722
+1553346638 Error Sending Data: Time: 775
+1592612264 Error Sending Data: Time: 795
+1652565383 Error Sending Data: Time: 825
+1719456161 Error Sending Data: Time: 859
+1786049759 Error Sending Data: Time: 892

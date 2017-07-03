@@ -1,0 +1,46 @@
+3387642 Rime started with address 193.12.0.0.0.0.0.5
+3400954 MAC c1:0c:00:00:00:00:00:05 Contiki 3.0 started. Node id is set to 5.
+3410990 CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+3426735 Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0005
+3430467 Starting 'Sender process'
+3437631 IPv6 addresses: aaaa::c30c:0:0:5
+3440961 fe80::c30c:0:0:5
+71431758 Error Sending Data: Time: 34
+160322487 Error Sending Data: Time: 79
+233682209 Error Sending Data: Time: 115
+294057294 Error Sending Data: Time: 146
+335322812 Error Sending Data: Time: 166
+396401005 Error Sending Data: Time: 197
+449494708 Error Sending Data: Time: 223
+505963524 Error Sending Data: Time: 252
+546104092 Error Sending Data: Time: 272
+659557207 Error Sending Data: Time: 328
+670525939 Error Sending Data: Time: 334
+765541651 Error Sending Data: Time: 381
+806822813 Error Sending Data: Time: 402
+901417821 Error Sending Data: Time: 449
+953760317 Error Sending Data: Time: 475
+1002088460 Error Sending Data: Time: 500
+1044307190 Error Sending Data: Time: 521
+1083729047 Error Sending Data: Time: 540
+1164682192 Error Sending Data: Time: 581
+1252578710 Sending message to aaaa::c30c:0:0:1
+1252587632 Data: [0, 100, -4685, -600, 1195]
+1314219249 Sending message to aaaa::c30c:0:0:1
+1314227347 Data: [88, 81, -4685, -600, 69]
+1373437986 Sending message to aaaa::c30c:0:0:1
+1373446899 Data: [189, 182, -4685, -600, 43]
+1385359827 Sending message to aaaa::c30c:0:0:1
+1385367915 Data: [22, 15, -4685, -600, 64]
+1500141187 Sending message to aaaa::c30c:0:0:1
+1500150518 Data: [172, 165, -4685, -600, 315]
+1529250535 Sending message to aaaa::c30c:0:0:1
+1529259035 Data: [17, 10, -4685, -600, 201]
+1606516132 Sending message to aaaa::c30c:0:0:1
+1606524638 Data: [81, 74, -4685, -600, 237]
+1642219297 Sending message to aaaa::c30c:0:0:1
+1642228628 Data: [143, 136, -4685, -600, 442]
+1728427824 Sending message to aaaa::c30c:0:0:1
+1728437077 Data: [122, 115, -4685, -600, 437]
+1785657956 Sending message to aaaa::c30c:0:0:1
+1785667285 Data: [132, 125, -4685, -600, 135]

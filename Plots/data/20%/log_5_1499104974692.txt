@@ -1,0 +1,46 @@
+3387642 Rime started with address 193.12.0.0.0.0.0.5
+3400954 MAC c1:0c:00:00:00:00:00:05 Contiki 3.0 started. Node id is set to 5.
+3410990 CSMA ContikiMAC, channel check rate 8 Hz, radio channel 26
+3426735 Tentative link-local IPv6 address fe80:0000:0000:0000:c30c:0000:0000:0005
+3430467 Starting 'Sender process'
+3437631 IPv6 addresses: aaaa::c30c:0:0:5
+3440961 fe80::c30c:0:0:5
+71431758 Error Sending Data: Time: 34
+160322349 Error Sending Data: Time: 79
+217400885 Error Sending Data: Time: 107
+258916575 Error Sending Data: Time: 128
+323260285 Error Sending Data: Time: 160
+381588458 Error Sending Data: Time: 189
+453088432 Error Sending Data: Time: 225
+531775951 Error Sending Data: Time: 264
+593666994 Error Sending Data: Time: 295
+643869799 Error Sending Data: Time: 321
+700307208 Error Sending Data: Time: 349
+733291630 Error Sending Data: Time: 365
+797369693 Error Sending Data: Time: 397
+855510314 Error Sending Data: Time: 426
+929604066 Error Sending Data: Time: 463
+1009057276 Error Sending Data: Time: 503
+1033432192 Error Sending Data: Time: 515
+1102322819 Error Sending Data: Time: 550
+1199400964 Error Sending Data: Time: 598
+1218125608 Sending message to aaaa::c30c:0:0:1
+1218134110 Data: [0, 100, -4685, -600, 654]
+1296798218 Sending message to aaaa::c30c:0:0:1
+1296807133 Data: [124, 117, -4685, -600, 81]
+1370188023 Sending message to aaaa::c30c:0:0:1
+1370196523 Data: [24, 17, -4685, -600, 124]
+1389250534 Sending message to aaaa::c30c:0:0:1
+1389258178 Data: [16, 9, -4685, -600, 57]
+1477828749 Sending message to aaaa::c30c:0:0:1
+1477836839 Data: [64, 57, -4685, -600, 90]
+1528297396 Sending message to aaaa::c30c:0:0:1
+1528305899 Data: [37, 30, -4685, -600, 102]
+1603657956 Sending message to aaaa::c30c:0:0:1
+1603665968 Data: [99, 92, -4685, -600, 68]
+1660047430 Sending message to aaaa::c30c:0:0:1
+1660056345 Data: [126, 119, -4685, -600, 86]
+1720096866 Sending message to aaaa::c30c:0:0:1
+1720104881 Data: [10, 3, -4685, -600, 115]
+1787673182 Sending message to aaaa::c30c:0:0:1
+1787682020 Data: [255, 248, -4685, -600, 98]
