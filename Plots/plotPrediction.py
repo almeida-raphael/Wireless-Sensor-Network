@@ -64,7 +64,7 @@ def avgDataType(data):
 
     return struct
 
-def buildChart(Y, X, Y_update, X_update):
+def buildChart(Y, X):#, Y_update, X_update):
     f, axarr = plt.subplots(3, sharex=True)
     pos = 0
     color = 0xFF0000
@@ -74,13 +74,13 @@ def buildChart(Y, X, Y_update, X_update):
         if i == 7:
             pos +=1
         axarr[pos].plot(X, Y[i][:], color="#%x" % (color), label="%i%% TX Sucedida"%((i+1)*10))
-        axarr[pos].scatter(X_update, Y_update[i][:], color="#%x" % (color), label="Medições @%i%%"%((i+1)*10))
+        #axarr[pos].scatter(X_update, Y_update[i][:], color="#%x" % (color), label="Medições @%i%%"%((i+1)*10))
         color += 0x000019
         color -= 0x190000
 
-    axarr[0].legend(bbox_to_anchor=(1.00, 1.00))
-    axarr[1].legend(bbox_to_anchor=(1.00, 1.00))
-    axarr[2].legend(bbox_to_anchor=(1.00, 1.00))
+    #axarr[0].legend()#bbox_to_anchor=(1.00, 1.00))
+    #axarr[1].legend()#bbox_to_anchor=(1.00, 1.00))
+    #axarr[2].legend()#bbox_to_anchor=(1.00, 1.00))
 
     plt.show()
 
@@ -154,6 +154,6 @@ YE = np.array(YE)
 
 X = avg_data_pred[-1]["time"]
 
-buildChart(YL1, X, YL1_update, X_update)
-buildChart(YL2, X, YL2_update, X_update)
-buildChart(YE, X, YE_update, X_update)
+buildChart(YL1, X)#, YL1_update, X_update)
+buildChart(YL2, X)#, YL2_update, X_update)
+buildChart(YE, X)#, YE_update, X_update)
