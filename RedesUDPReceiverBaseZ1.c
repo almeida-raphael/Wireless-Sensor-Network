@@ -20,8 +20,6 @@
 #define UDP_PORT 1234
 #define SERVICE_ID 190
 
-#define SEND_INTERVAL   (10 * CLOCK_SECOND)
-
 static struct simple_udp_connection connection;
 
 #define DEC1 10
@@ -38,8 +36,6 @@ static struct simple_udp_connection connection;
 typedef struct {
   double light1;
   double light2;
-  double temperature;
-  double humidity;
   double energy_comsumption;
 } dataTypes;
 
@@ -81,8 +77,6 @@ dataTypes initDataType(){
   dataTypes temp;
   temp.light1 = 0;
   temp.light2 = 0;
-  temp.temperature = 0;
-  temp.humidity = 0;
   temp.energy_comsumption = 0;
   return temp;
 }
@@ -93,8 +87,6 @@ dataTypes product(dataTypes a, dataTypes b){
   dataTypes temp;
   temp.light1 = a.light1 * b.light1;
   temp.light2 = a.light2 * b.light2;
-  temp.temperature = a.temperature * b.temperature;
-  temp.humidity = a.humidity * b.humidity;
   temp.energy_comsumption = a.energy_comsumption * b.energy_comsumption;
   return temp;
 }
@@ -103,8 +95,6 @@ dataTypes quocient(dataTypes a, dataTypes b){
   dataTypes temp;
   temp.light1 = b.light1 == 0 ? 0 : (a.light1 / b.light1);
   temp.light2 = b.light2 == 0 ? 0 : (a.light2 / b.light2);
-  temp.temperature = b.temperature == 0 ? 0 : (a.temperature / b.temperature);
-  temp.humidity = b.humidity == 0 ? 0 : (a.humidity / b.humidity);
   temp.energy_comsumption = b.energy_comsumption == 0 ? 0 : (a.energy_comsumption / b.energy_comsumption);
   return temp;
 }
@@ -114,14 +104,10 @@ dataTypes quocientConstant(dataTypes a, double b){
   if(b == 0){
     temp.light1 = 0;
     temp.light2 = 0;
-    temp.temperature = 0;
-    temp.humidity = 0;
     temp.energy_comsumption = 0; 
   }else{
     temp.light1 =  a.light1 / b;
     temp.light2 = a.light2 / b;
-    temp.temperature = a.temperature / b;
-    temp.humidity = a.humidity / b;
     temp.energy_comsumption = a.energy_comsumption / b;
   }
   return temp;    
@@ -131,8 +117,6 @@ dataTypes productConstant(dataTypes a, double b){
   dataTypes temp;
   temp.light1 = a.light1 * b;
   temp.light2 = a.light2 * b;
-  temp.temperature = a.temperature * b;
-  temp.humidity = a.humidity * b;
   temp.energy_comsumption = a.energy_comsumption * b;
   return temp;
 }
@@ -141,8 +125,6 @@ dataTypes sum(dataTypes a, dataTypes b){
   dataTypes temp;
   temp.light1 = a.light1 + b.light1;
   temp.light2 = a.light2 + b.light2;
-  temp.temperature = a.temperature + b.temperature;
-  temp.humidity = a.humidity + b.humidity;
   temp.energy_comsumption = a.energy_comsumption + b.energy_comsumption;
   return temp;
 }
@@ -151,8 +133,6 @@ dataTypes subtract(dataTypes a, dataTypes b){
   dataTypes temp;
   temp.light1 = a.light1 - b.light1;
   temp.light2 = a.light2 - b.light2;
-  temp.temperature = a.temperature - b.temperature;
-  temp.humidity = a.humidity - b.humidity;
   temp.energy_comsumption = a.energy_comsumption - b.energy_comsumption;
   return temp;
 }
@@ -161,8 +141,6 @@ dataTypes subtractConstant(dataTypes a, double b){
   dataTypes temp;
   temp.light1 = a.light1 - b;
   temp.light2 = a.light2 - b;
-  temp.temperature = a.temperature - b;
-  temp.humidity = a.humidity - b;
   temp.energy_comsumption = a.energy_comsumption - b;
   return temp;
 }
@@ -170,8 +148,6 @@ dataTypes subtractConstant(dataTypes a, double b){
 void printDataType(dataTypes a, short newLine){
   printDouble("Light 1: %ld/%ld - ", a.light1, DEC4);
   printDouble("Light 2: %ld/%ld - ", a.light2, DEC4);
-  printDouble("Temperature: %ld/%ld - ", a.temperature, DEC4);
-  printDouble("Humidity: %ld/%ld - ", a.humidity, DEC4);
   printDouble("Energy Consumption: %ld/%ld", a.energy_comsumption, DEC4);
   if(newLine == true){
     printf("\n");
@@ -238,7 +214,7 @@ void printDebugStep(){
   printf("\n");
   printf("dSumKG: \n");
   printDataType(dSumKG, true);
-  printf("\n");
+  printf("\n");   
   printf("tdCovSumKG: \n");
   printDataType(tdCovSumKG, true);
   printf("\n");
@@ -269,8 +245,6 @@ dataTypes sumConstant(dataTypes a, double b){
   dataTypes temp;
   temp.light1 = a.light1 + b;
   temp.light2 = a.light2 + b;
-  temp.temperature = a.temperature + b;
-  temp.humidity = a.humidity + b;
   temp.energy_comsumption = a.energy_comsumption + b;
   return temp;
 }
@@ -402,7 +376,7 @@ void update(dataTypes d){
 
   dataSize++;
 
-  double t = clock_seconds();
+  double t = clock_seconds(); 
 
   tSum = tSum + t;
   dSum = sum(dSum, d);
@@ -444,9 +418,7 @@ void update(dataTypes d){
 void insertDataIntoDataSlot(int index, int32_t *data){
   avalibleData[index].light1 = data[0];
   avalibleData[index].light2 = data[1];
-  avalibleData[index].temperature = data[2];
-  avalibleData[index].humidity = data[3];
-  avalibleData[index].energy_comsumption = data[4];
+  avalibleData[index].energy_comsumption = data[2];
   dataUsed[index] = 0;
 }
 
